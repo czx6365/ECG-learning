@@ -1,0 +1,45 @@
+{
+  "checkpoint": "/home/ubuntu/HeartLang-main/checkpoints/vqhbr/H_resume_control_no_polarity_e50_finalonly/checkpoint-50.pth",
+  "data_path": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v2_clean_le5pct",
+  "split": "val",
+  "target_pairs": [],
+  "usage": {
+    "total_tokens": 1117683,
+    "active_codes": 769,
+    "dead_codes": 255,
+    "perplexity": 688.0131820397697,
+    "top1pct_usage": 0.045902997540447514
+  },
+  "reconstruction": {
+    "mse": 0.06285316019901542,
+    "rmse": 0.25070532543010615,
+    "mae": 0.10184112875233109,
+    "prd": 35.02712793882496,
+    "snr": 9.111909450338723
+  },
+  "polarity": {
+    "macro_global_polarity_majority": 0.7821014436176712,
+    "weighted_global_polarity_majority": 0.78692169425499,
+    "macro_per_lead_polarity_majority": 0.884367601030112,
+    "weighted_per_lead_polarity_majority": 0.894421235363227,
+    "paired_assignment_accuracy": NaN,
+    "paired_polarity_collision_rate": NaN,
+    "paired_assigned_tokens": 0
+  },
+  "distance": {
+    "eligible_sids": 768,
+    "macro_intra_shift_corr": 0.31447335449221997,
+    "sample_weighted_intra_shift_corr": 0.31447335449221997,
+    "intra_shift_corr_p90": 0.656210684044575,
+    "overall_inter_shift_corr": 0.5962028169064235,
+    "inter_over_intra": 1.895877054096084,
+    "paired_sibling_inter_shift_corr": NaN,
+    "non_sibling_inter_shift_corr": 0.5962028169064235,
+    "intra_pairs": 196608,
+    "inter_pairs": 200000,
+    "sibling_inter_pairs": 0,
+    "silhouette_cosine": -0.49071747064590454,
+    "nearest_code_margin": 0.03058565260887367
+  },
+  "target_pairs_table": []
+}

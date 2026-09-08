@@ -1,0 +1,35 @@
+{
+  "usage": {
+    "total_tokens": 1174616,
+    "active_sids": 780,
+    "dead_sids": 244,
+    "active_ratio": 0.76171875,
+    "perplexity": 703.5931551090681,
+    "top1_frequency": 0.0038012422783275557,
+    "top5_frequency": 0.01799651971367664,
+    "top1pct_frequency": 0.037634426910581845,
+    "checkpoint": "/home/ubuntu/HeartLang-main/checkpoints/vqhbr/ECG_DSA_patient_healthy_raw_v2_codebook1024_dim64_bs256_e50_finalonly/checkpoint-50.pth",
+    "data_path": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v2",
+    "split": "val",
+    "evaluated_samples": 9877,
+    "codebook_size": 1024,
+    "codebook_dim": 64,
+    "reservoir_per_sid": 256
+  },
+  "distance": {
+    "distance_mode": "local_shift_invariant_correlation",
+    "max_shift": 2,
+    "eligible_sids": 775,
+    "intra_pairs": 198400,
+    "inter_pairs": 200000,
+    "intra_shift_corr_dist_mean": 0.6246483317580142,
+    "intra_shift_corr_dist_p50": 0.6765313277033993,
+    "intra_shift_corr_dist_p90": 1.0431984891206931,
+    "inter_shift_corr_dist_mean": 0.8104001916367245,
+    "inter_shift_corr_dist_p50": 0.8821066242964233,
+    "inter_shift_corr_dist_p90": 1.131664316575172,
+    "inter_over_intra_shift_corr_ratio": 1.2973702969091891,
+    "intra_best_abs_shift_mean": 1.3192288306451614,
+    "inter_best_abs_shift_mean": 1.52841
+  }
+}

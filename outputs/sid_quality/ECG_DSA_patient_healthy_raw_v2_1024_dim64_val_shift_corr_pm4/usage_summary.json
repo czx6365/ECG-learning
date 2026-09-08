@@ -1,0 +1,17 @@
+{
+  "total_tokens": 1174616,
+  "active_sids": 780,
+  "dead_sids": 244,
+  "active_ratio": 0.76171875,
+  "perplexity": 703.5931551090681,
+  "top1_frequency": 0.0038012422783275557,
+  "top5_frequency": 0.01799651971367664,
+  "top1pct_frequency": 0.037634426910581845,
+  "checkpoint": "/home/ubuntu/HeartLang-main/checkpoints/vqhbr/ECG_DSA_patient_healthy_raw_v2_codebook1024_dim64_bs256_e50_finalonly/checkpoint-50.pth",
+  "data_path": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v2",
+  "split": "val",
+  "evaluated_samples": 9877,
+  "codebook_size": 1024,
+  "codebook_dim": 64,
+  "reservoir_per_sid": 256
+}

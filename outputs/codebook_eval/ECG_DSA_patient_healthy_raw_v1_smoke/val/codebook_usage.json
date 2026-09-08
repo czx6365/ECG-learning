@@ -1,0 +1,67 @@
+{
+  "total_tokens": 411055,
+  "codebook_size": 8192,
+  "active_codes": 4953,
+  "active_ratio": 0.6046142578125,
+  "dead_codes": 3239,
+  "dead_ratio": 0.3953857421875,
+  "entropy": 7.393007481010082,
+  "perplexity": 1624.584680733067,
+  "top_1_percent_usage": 0.20915935823673232,
+  "top_10_codes": [
+    {
+      "code_id": 742,
+      "count": 2431,
+      "frequency": 0.0059140504312075026
+    },
+    {
+      "code_id": 3704,
+      "count": 2295,
+      "frequency": 0.005583194463028062
+    },
+    {
+      "code_id": 5783,
+      "count": 2266,
+      "frequency": 0.00551264429334274
+    },
+    {
+      "code_id": 5883,
+      "count": 2213,
+      "frequency": 0.005383707776331634
+    },
+    {
+      "code_id": 2311,
+      "count": 2051,
+      "frequency": 0.0049895999318825945
+    },
+    {
+      "code_id": 7239,
+      "count": 2047,
+      "frequency": 0.004979868873994964
+    },
+    {
+      "code_id": 6213,
+      "count": 1870,
+      "frequency": 0.00454926956246731
+    },
+    {
+      "code_id": 3173,
+      "count": 1674,
+      "frequency": 0.00407244772597341
+    },
+    {
+      "code_id": 755,
+      "count": 1555,
+      "frequency": 0.0037829487538163994
+    },
+    {
+      "code_id": 6396,
+      "count": 1431,
+      "frequency": 0.0034812859592998503
+    }
+  ],
+  "checkpoint_path": "/Users/czx/Desktop/医疗项目/HeartLang-main/checkpoints/vqhbr/ECG_DSA_patient_healthy_raw_v1_smoke/checkpoint-1.pth",
+  "data_path": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v1",
+  "split": "val",
+  "used_samples": 3832
+}

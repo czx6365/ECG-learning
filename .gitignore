@@ -1,0 +1,23 @@
+# Python / local runtime
+__pycache__/
+*.py[cod]
+.venv/
+.venv-heartlang/
+.env
+
+# Large or private experiment assets
+datasets/
+checkpoints/**/*.pth
+checkpoints/**/*.pt
+checkpoints/**/*.ckpt
+events.out.tfevents*
+token_assignments.csv
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.mat
+
+# OS/editor
+.DS_Store
+.vscode/*.log

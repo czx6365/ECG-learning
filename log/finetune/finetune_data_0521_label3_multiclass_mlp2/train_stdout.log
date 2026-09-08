@@ -1,0 +1,489 @@
+Not using distributed mode
+Namespace(task_type='classification', is_binary=False, batch_size=256, epochs=30, update_freq=1, save_ckpt_freq=10, robust_test=None, model='HeartLang_finetune_base', head_type='mlp', mlp_input_type='end_to_end', task_head_type='mlp2', task_head_hidden_dim=256, task_head_dropout=0.1, share_aux_task_head=False, pooling_type='cls', regression_loss_type='mse', regression_loss_beta=1.0, aux_regression_metadata_dir='', aux_regression_label_cols=[], aux_regression_loss_weight=1.0, aux_regression_target_scale=100.0, feature_model_type='decision_tree', save_features=False, load_features_if_exist=False, feature_dir='', force_reextract_features=False, layer_scale_init_value=0.1, drop=0.0, disable_eval_during_finetuning=False, dt_max_depth=None, dt_random_state=0, dt_criterion='gini', rf_n_estimators=300, rf_max_depth=None, rf_random_state=0, rf_n_jobs=-1, svm_kernel='rbf', svm_c=1.0, svm_gamma='scale', svm_random_state=0, lr_max_iter=1000, lr_c=1.0, lr_solver='lbfgs', lr_random_state=0, xgb_n_estimators=300, xgb_max_depth=6, xgb_learning_rate=0.05, xgb_subsample=0.8, xgb_colsample_bytree=0.8, xgb_random_state=0, xgb_n_jobs=-1, lgbm_n_estimators=300, lgbm_learning_rate=0.05, lgbm_num_leaves=31, lgbm_max_depth=-1, lgbm_random_state=0, lgbm_n_jobs=-1, model_ema=False, model_ema_decay=0.9999, model_ema_force_cpu=False, opt='adamw', opt_eps=1e-08, opt_betas=None, clip_grad=None, momentum=0.9, weight_decay=0.05, weight_decay_end=None, lr=0.005, layer_decay=0.9, warmup_lr=1e-06, min_lr=1e-05, warmup_epochs=10, warmup_steps=-1, smoothing=0.1, reprob=0.25, remode='pixel', recount=1, resplit=False, finetune='checkpoints/pretrain/HeartLang_pretrain_ECG_DSA_v2_vqhbr1024_dim64_scratch_e100/checkpoint-100.pth', trainable='linear', trainable_last_n_layers=1, model_key='model|module', model_prefix='', model_filter_name='gzp', init_scale=0.001, use_mean_pooling=True, sampling_method='random', split_ratio=1.0, dataset_dir='datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label3', nb_classes=3, regression_dim=1, output_dir='checkpoints/finetune/ecg_dsa/finetune_data_0521_label3_multiclass_mlp2', log_dir='log/finetune/finetune_data_0521_label3_multiclass_mlp2', device='cuda', seed=0, resume='', auto_resume=False, save_ckpt=True, start_epoch=1, eval=False, dist_eval=False, num_workers=10, pin_mem=True, disable_amp=True, world_size=1, local_rank=-1, dist_on_itp=False, dist_url='env://', enable_deepspeed=False, distributed=False)
+==================== stage train's class distribution ====================
+Class 0: 2189 samples
+Class 1: 3019 samples
+Class 2: 689 samples
+==================== stage val's class distribution ====================
+Class 0: 429 samples
+Class 1: 604 samples
+Class 2: 143 samples
+==================== stage test's class distribution ====================
+Class 0: 423 samples
+Class 1: 666 samples
+Class 2: 141 samples
+All columns are suitable for ROC AUC calculation.
+val dataset has invalid columns:  []
+All columns are suitable for ROC AUC calculation.
+test dataset has invalid columns:  []
+Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f60332a7190>
+checkpoint.keys(): dict_keys(['model', 'optimizer', 'epoch', 'args', 'scaler'])
+=========================Load ckpt from checkpoints/pretrain/HeartLang_pretrain_ECG_DSA_v2_vqhbr1024_dim64_scratch_e100/checkpoint-100.pth=========================
+Load state_dict by model_key = model
+Weights of ST_ECGFormerClassifier not initialized from pretrained model: ['mlp_head.0.weight', 'mlp_head.0.bias', 'mlp_head.3.weight', 'mlp_head.3.bias']
+Trainable layers: ['mlp_head.0.weight', 'mlp_head.0.bias', 'mlp_head.3.weight', 'mlp_head.3.bias']
+LR = 0.00500000
+Batch size on one GPU = 256, 1 GPUs total batch size = 256
+Update frequent = 1
+Number of training examples = 5897
+Number of training steps per epoch = 23
+Assigned values = [0.2541865828329001, 0.2824295364810001, 0.31381059609000006, 0.3486784401000001, 0.3874204890000001, 0.4304672100000001, 0.4782969000000001, 0.531441, 0.5904900000000001, 0.6561, 0.7290000000000001, 0.81, 0.9, 1.0]
+Skip weight decay name marked in model: {}
+Optimizer config: {'lr': 0.005, 'weight_decay': 0.0, 'eps': 1e-08}
+Use step level LR scheduler!
+Set warmup steps = 230
+Set warmup steps = 0
+Max WD = 0.0500000, Min WD = 0.0500000
+criterion = CrossEntropyLoss()
+Start training for 30 epochs
+Epoch: [1]  [ 0/23]  eta: 0:00:29  lr: 0.000000  min_lr: 0.000000  loss: 1.0631 (1.0631)  main_loss: 1.0631 (1.0631)  class_acc: 0.4492 (0.4492)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 2.8911 (2.8911)  time: 1.2891  data: 0.2469  max mem: 2827
+Epoch: [1]  [10/23]  eta: 0:00:05  lr: 0.000218  min_lr: 0.000218  loss: 1.0009 (1.0040)  main_loss: 1.0009 (1.0040)  class_acc: 0.5078 (0.5085)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.5527 (1.8549)  time: 0.4442  data: 0.0225  max mem: 2837
+Epoch: [1]  [20/23]  eta: 0:00:01  lr: 0.000437  min_lr: 0.000437  loss: 0.9720 (0.9716)  main_loss: 0.9720 (0.9716)  class_acc: 0.5352 (0.5366)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.4470 (1.6475)  time: 0.3583  data: 0.0001  max mem: 2837
+Epoch: [1]  [22/23]  eta: 0:00:00  lr: 0.000480  min_lr: 0.000480  loss: 0.9607 (0.9677)  main_loss: 0.9607 (0.9677)  class_acc: 0.5352 (0.5403)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3870 (1.6474)  time: 0.3579  data: 0.0001  max mem: 2837
+Epoch: [1] Total time: 0:00:09 (0.4011 s / it)
+Averaged stats: lr: 0.000480  min_lr: 0.000480  loss: 0.9607 (0.9677)  main_loss: 0.9607 (0.9677)  class_acc: 0.5352 (0.5403)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3870 (1.6474)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8667 (0.8667)  main_loss: 0.8667 (0.8667)  accuracy: 0.5964 (0.5964)  precision: 0.4019 (0.4019)  recall: 0.4152 (0.4152)  f1: 0.3934 (0.3934)  time: 0.8261  data: 0.3032  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8667 (0.8857)  main_loss: 0.8667 (0.8857)  accuracy: 0.5964 (0.5918)  precision: 0.3468 (0.3898)  recall: 0.4152 (0.4277)  f1: 0.3684 (0.3986)  time: 0.4517  data: 0.0759  max mem: 3685
+Val: Total time: 0:00:01 (0.4657 s / it)
+* loss 0.886
+AUC of the network on the 1176 val ECG: 67.78%
+Max auc val: 67.78%
+Epoch: [2]  [ 0/23]  eta: 0:00:15  lr: 0.000502  min_lr: 0.000502  loss: 0.9167 (0.9167)  main_loss: 0.9167 (0.9167)  class_acc: 0.5508 (0.5508)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2434 (1.2434)  time: 0.6909  data: 0.3181  max mem: 3685
+Epoch: [2]  [10/23]  eta: 0:00:05  lr: 0.000721  min_lr: 0.000721  loss: 0.8792 (0.8770)  main_loss: 0.8792 (0.8770)  class_acc: 0.5820 (0.5898)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8481 (1.2167)  time: 0.3904  data: 0.0290  max mem: 3685
+Epoch: [2]  [20/23]  eta: 0:00:01  lr: 0.000939  min_lr: 0.000939  loss: 0.8744 (0.8742)  main_loss: 0.8744 (0.8742)  class_acc: 0.5898 (0.5915)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3703 (1.3967)  time: 0.3597  data: 0.0001  max mem: 3685
+Epoch: [2]  [22/23]  eta: 0:00:00  lr: 0.000983  min_lr: 0.000983  loss: 0.8704 (0.8756)  main_loss: 0.8704 (0.8756)  class_acc: 0.5898 (0.5917)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.5071 (1.4312)  time: 0.3590  data: 0.0001  max mem: 3685
+Epoch: [2] Total time: 0:00:08 (0.3768 s / it)
+Averaged stats: lr: 0.000983  min_lr: 0.000983  loss: 0.8704 (0.8756)  main_loss: 0.8704 (0.8756)  class_acc: 0.5898 (0.5917)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.5071 (1.4312)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8547 (0.8547)  main_loss: 0.8547 (0.8547)  accuracy: 0.6198 (0.6198)  precision: 0.5056 (0.5056)  recall: 0.4581 (0.4581)  f1: 0.4582 (0.4582)  time: 0.6981  data: 0.2196  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8547 (0.8489)  main_loss: 0.8547 (0.8489)  accuracy: 0.6094 (0.6131)  precision: 0.5507 (0.5468)  recall: 0.4939 (0.4921)  f1: 0.5028 (0.4979)  time: 0.4274  data: 0.0550  max mem: 3685
+Val: Total time: 0:00:01 (0.4392 s / it)
+* loss 0.849
+AUC of the network on the 1176 val ECG: 71.58%
+Max auc val: 71.58%
+Epoch: [3]  [ 0/23]  eta: 0:00:13  lr: 0.001004  min_lr: 0.001004  loss: 0.8886 (0.8886)  main_loss: 0.8886 (0.8886)  class_acc: 0.5859 (0.5859)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 2.0352 (2.0352)  time: 0.5946  data: 0.2238  max mem: 3685
+Epoch: [3]  [10/23]  eta: 0:00:04  lr: 0.001223  min_lr: 0.001223  loss: 0.8532 (0.8509)  main_loss: 0.8532 (0.8509)  class_acc: 0.5977 (0.6033)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3091 (1.4018)  time: 0.3825  data: 0.0205  max mem: 3685
+Epoch: [3]  [20/23]  eta: 0:00:01  lr: 0.001441  min_lr: 0.001441  loss: 0.8442 (0.8453)  main_loss: 0.8442 (0.8453)  class_acc: 0.6055 (0.6116)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2052 (1.3795)  time: 0.3608  data: 0.0001  max mem: 3685
+Epoch: [3]  [22/23]  eta: 0:00:00  lr: 0.001485  min_lr: 0.001485  loss: 0.8442 (0.8479)  main_loss: 0.8442 (0.8479)  class_acc: 0.6055 (0.6101)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3091 (1.3920)  time: 0.3601  data: 0.0001  max mem: 3685
+Epoch: [3] Total time: 0:00:08 (0.3736 s / it)
+Averaged stats: lr: 0.001485  min_lr: 0.001485  loss: 0.8442 (0.8479)  main_loss: 0.8442 (0.8479)  class_acc: 0.6055 (0.6101)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3091 (1.3920)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8374 (0.8374)  main_loss: 0.8374 (0.8374)  accuracy: 0.5938 (0.5938)  precision: 0.4065 (0.4065)  recall: 0.4161 (0.4161)  f1: 0.3988 (0.3988)  time: 0.7534  data: 0.2724  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8349 (0.8226)  main_loss: 0.8349 (0.8226)  accuracy: 0.6068 (0.6071)  precision: 0.4394 (0.5180)  recall: 0.4803 (0.4600)  f1: 0.4593 (0.4574)  time: 0.4382  data: 0.0682  max mem: 3685
+Val: Total time: 0:00:01 (0.4532 s / it)
+* loss 0.823
+AUC of the network on the 1176 val ECG: 72.57%
+Max auc val: 72.57%
+Epoch: [4]  [ 0/23]  eta: 0:00:15  lr: 0.001507  min_lr: 0.001507  loss: 0.8509 (0.8509)  main_loss: 0.8509 (0.8509)  class_acc: 0.5742 (0.5742)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3467 (1.3467)  time: 0.6729  data: 0.3044  max mem: 3685
+Epoch: [4]  [10/23]  eta: 0:00:05  lr: 0.001725  min_lr: 0.001725  loss: 0.8349 (0.8302)  main_loss: 0.8349 (0.8302)  class_acc: 0.6250 (0.6172)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3467 (1.4753)  time: 0.3897  data: 0.0278  max mem: 3685
+Epoch: [4]  [20/23]  eta: 0:00:01  lr: 0.001943  min_lr: 0.001943  loss: 0.8247 (0.8349)  main_loss: 0.8247 (0.8349)  class_acc: 0.6172 (0.6140)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3322 (1.5834)  time: 0.3621  data: 0.0001  max mem: 3685
+Epoch: [4]  [22/23]  eta: 0:00:00  lr: 0.001987  min_lr: 0.001987  loss: 0.8247 (0.8388)  main_loss: 0.8247 (0.8388)  class_acc: 0.6172 (0.6124)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.4597 (1.5859)  time: 0.3623  data: 0.0001  max mem: 3685
+Epoch: [4] Total time: 0:00:08 (0.3784 s / it)
+Averaged stats: lr: 0.001987  min_lr: 0.001987  loss: 0.8247 (0.8388)  main_loss: 0.8247 (0.8388)  class_acc: 0.6172 (0.6124)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.4597 (1.5859)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8301 (0.8301)  main_loss: 0.8301 (0.8301)  accuracy: 0.5938 (0.5938)  precision: 0.5123 (0.5123)  recall: 0.4261 (0.4261)  f1: 0.4178 (0.4178)  time: 0.8600  data: 0.3726  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8265 (0.8228)  main_loss: 0.8265 (0.8228)  accuracy: 0.5938 (0.6063)  precision: 0.5566 (0.5610)  recall: 0.4622 (0.4609)  f1: 0.4647 (0.4610)  time: 0.4678  data: 0.0933  max mem: 3685
+Val: Total time: 0:00:01 (0.4851 s / it)
+* loss 0.823
+AUC of the network on the 1176 val ECG: 72.95%
+Max auc val: 72.95%
+Epoch: [5]  [ 0/23]  eta: 0:00:17  lr: 0.002009  min_lr: 0.002009  loss: 0.8502 (0.8502)  main_loss: 0.8502 (0.8502)  class_acc: 0.5781 (0.5781)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7642 (0.7642)  time: 0.7537  data: 0.3758  max mem: 3685
+Epoch: [5]  [10/23]  eta: 0:00:05  lr: 0.002227  min_lr: 0.002227  loss: 0.8199 (0.8129)  main_loss: 0.8199 (0.8129)  class_acc: 0.6172 (0.6200)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0029 (1.0633)  time: 0.4018  data: 0.0343  max mem: 3685
+Epoch: [5]  [20/23]  eta: 0:00:01  lr: 0.002445  min_lr: 0.002445  loss: 0.8199 (0.8205)  main_loss: 0.8199 (0.8205)  class_acc: 0.6211 (0.6241)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0882 (1.2576)  time: 0.3655  data: 0.0001  max mem: 3685
+Epoch: [5]  [22/23]  eta: 0:00:00  lr: 0.002489  min_lr: 0.002489  loss: 0.8225 (0.8279)  main_loss: 0.8225 (0.8279)  class_acc: 0.6211 (0.6196)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1774 (1.3266)  time: 0.3648  data: 0.0001  max mem: 3685
+Epoch: [5] Total time: 0:00:08 (0.3849 s / it)
+Averaged stats: lr: 0.002489  min_lr: 0.002489  loss: 0.8225 (0.8279)  main_loss: 0.8225 (0.8279)  class_acc: 0.6211 (0.6196)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1774 (1.3266)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8429 (0.8429)  main_loss: 0.8429 (0.8429)  accuracy: 0.5833 (0.5833)  precision: 0.3930 (0.3930)  recall: 0.4120 (0.4120)  f1: 0.3951 (0.3951)  time: 0.7749  data: 0.2830  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8360 (0.8285)  main_loss: 0.8360 (0.8285)  accuracy: 0.6042 (0.6046)  precision: 0.4394 (0.5272)  recall: 0.4802 (0.4656)  f1: 0.4593 (0.4662)  time: 0.4468  data: 0.0708  max mem: 3685
+Val: Total time: 0:00:01 (0.4622 s / it)
+* loss 0.828
+AUC of the network on the 1176 val ECG: 72.89%
+Max auc val: 72.95%
+Epoch: [6]  [ 0/23]  eta: 0:00:16  lr: 0.002511  min_lr: 0.002511  loss: 0.8541 (0.8541)  main_loss: 0.8541 (0.8541)  class_acc: 0.5820 (0.5820)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9447 (0.9447)  time: 0.7299  data: 0.3543  max mem: 3685
+Epoch: [6]  [10/23]  eta: 0:00:05  lr: 0.002729  min_lr: 0.002729  loss: 0.8096 (0.8184)  main_loss: 0.8096 (0.8184)  class_acc: 0.6250 (0.6154)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9447 (1.5436)  time: 0.3985  data: 0.0323  max mem: 3685
+Epoch: [6]  [20/23]  eta: 0:00:01  lr: 0.002948  min_lr: 0.002948  loss: 0.7950 (0.8173)  main_loss: 0.7950 (0.8173)  class_acc: 0.6250 (0.6194)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1887 (1.4416)  time: 0.3654  data: 0.0001  max mem: 3685
+Epoch: [6]  [22/23]  eta: 0:00:00  lr: 0.002991  min_lr: 0.002991  loss: 0.8152 (0.8229)  main_loss: 0.8152 (0.8229)  class_acc: 0.6211 (0.6157)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.4588 (1.5102)  time: 0.3645  data: 0.0001  max mem: 3685
+Epoch: [6] Total time: 0:00:08 (0.3844 s / it)
+Averaged stats: lr: 0.002991  min_lr: 0.002991  loss: 0.8152 (0.8229)  main_loss: 0.8152 (0.8229)  class_acc: 0.6211 (0.6157)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.4588 (1.5102)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8170 (0.8170)  main_loss: 0.8170 (0.8170)  accuracy: 0.5964 (0.5964)  precision: 0.5654 (0.5654)  recall: 0.4377 (0.4377)  f1: 0.4376 (0.4376)  time: 0.8488  data: 0.3554  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8170 (0.8150)  main_loss: 0.8170 (0.8150)  accuracy: 0.5964 (0.6122)  precision: 0.5329 (0.5627)  recall: 0.4783 (0.4831)  f1: 0.4593 (0.4884)  time: 0.4653  data: 0.0890  max mem: 3685
+Val: Total time: 0:00:01 (0.4839 s / it)
+* loss 0.815
+AUC of the network on the 1176 val ECG: 73.50%
+Max auc val: 73.50%
+Epoch: [7]  [ 0/23]  eta: 0:00:16  lr: 0.003013  min_lr: 0.003013  loss: 0.8357 (0.8357)  main_loss: 0.8357 (0.8357)  class_acc: 0.5859 (0.5859)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6189 (0.6189)  time: 0.7133  data: 0.3371  max mem: 3685
+Epoch: [7]  [10/23]  eta: 0:00:05  lr: 0.003231  min_lr: 0.003231  loss: 0.7939 (0.7987)  main_loss: 0.7939 (0.7987)  class_acc: 0.6289 (0.6261)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9017 (1.3576)  time: 0.3972  data: 0.0308  max mem: 3685
+Epoch: [7]  [20/23]  eta: 0:00:01  lr: 0.003450  min_lr: 0.003450  loss: 0.8075 (0.8087)  main_loss: 0.8075 (0.8087)  class_acc: 0.6289 (0.6289)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2451 (1.3242)  time: 0.3652  data: 0.0001  max mem: 3685
+Epoch: [7]  [22/23]  eta: 0:00:00  lr: 0.003493  min_lr: 0.003493  loss: 0.8154 (0.8101)  main_loss: 0.8154 (0.8101)  class_acc: 0.6250 (0.6286)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2451 (1.2929)  time: 0.3652  data: 0.0001  max mem: 3685
+Epoch: [7] Total time: 0:00:08 (0.3833 s / it)
+Averaged stats: lr: 0.003493  min_lr: 0.003493  loss: 0.8154 (0.8101)  main_loss: 0.8154 (0.8101)  class_acc: 0.6250 (0.6286)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2451 (1.2929)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8552 (0.8552)  main_loss: 0.8552 (0.8552)  accuracy: 0.6094 (0.6094)  precision: 0.4979 (0.4979)  recall: 0.4304 (0.4304)  f1: 0.4190 (0.4190)  time: 0.7294  data: 0.2185  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8518 (0.8074)  main_loss: 0.8518 (0.8074)  accuracy: 0.6094 (0.6250)  precision: 0.6087 (0.6289)  recall: 0.4893 (0.4783)  f1: 0.4997 (0.4848)  time: 0.4352  data: 0.0547  max mem: 3685
+Val: Total time: 0:00:01 (0.4539 s / it)
+* loss 0.807
+AUC of the network on the 1176 val ECG: 73.54%
+Max auc val: 73.54%
+Epoch: [8]  [ 0/23]  eta: 0:00:14  lr: 0.003515  min_lr: 0.003515  loss: 0.8579 (0.8579)  main_loss: 0.8579 (0.8579)  class_acc: 0.5781 (0.5781)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.8468 (1.8468)  time: 0.6358  data: 0.2666  max mem: 3685
+Epoch: [8]  [10/23]  eta: 0:00:05  lr: 0.003734  min_lr: 0.003734  loss: 0.7884 (0.7855)  main_loss: 0.7884 (0.7855)  class_acc: 0.6211 (0.6357)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2392 (1.3436)  time: 0.3930  data: 0.0244  max mem: 3685
+Epoch: [8]  [20/23]  eta: 0:00:01  lr: 0.003952  min_lr: 0.003952  loss: 0.7912 (0.7964)  main_loss: 0.7912 (0.7964)  class_acc: 0.6328 (0.6356)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2392 (1.3668)  time: 0.3683  data: 0.0001  max mem: 3685
+Epoch: [8]  [22/23]  eta: 0:00:00  lr: 0.003996  min_lr: 0.003996  loss: 0.7946 (0.8013)  main_loss: 0.7946 (0.8013)  class_acc: 0.6328 (0.6333)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2397 (1.3566)  time: 0.3674  data: 0.0001  max mem: 3685
+Epoch: [8] Total time: 0:00:08 (0.3844 s / it)
+Averaged stats: lr: 0.003996  min_lr: 0.003996  loss: 0.7946 (0.8013)  main_loss: 0.7946 (0.8013)  class_acc: 0.6328 (0.6333)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2397 (1.3566)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8109 (0.8109)  main_loss: 0.8109 (0.8109)  accuracy: 0.6068 (0.6068)  precision: 0.4180 (0.4180)  recall: 0.4250 (0.4250)  f1: 0.4071 (0.4071)  time: 0.7414  data: 0.2417  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8109 (0.8109)  main_loss: 0.8109 (0.8109)  accuracy: 0.6068 (0.6046)  precision: 0.4394 (0.5505)  recall: 0.4511 (0.4507)  f1: 0.4479 (0.4407)  time: 0.4412  data: 0.0605  max mem: 3685
+Val: Total time: 0:00:01 (0.4560 s / it)
+* loss 0.811
+AUC of the network on the 1176 val ECG: 72.93%
+Max auc val: 73.54%
+Epoch: [9]  [ 0/23]  eta: 0:00:16  lr: 0.004017  min_lr: 0.004017  loss: 0.8022 (0.8022)  main_loss: 0.8022 (0.8022)  class_acc: 0.6133 (0.6133)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7564 (0.7564)  time: 0.7157  data: 0.3383  max mem: 3685
+Epoch: [9]  [10/23]  eta: 0:00:05  lr: 0.004236  min_lr: 0.004236  loss: 0.7922 (0.7762)  main_loss: 0.7922 (0.7762)  class_acc: 0.6484 (0.6452)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1628 (1.2835)  time: 0.3982  data: 0.0308  max mem: 3685
+Epoch: [9]  [20/23]  eta: 0:00:01  lr: 0.004454  min_lr: 0.004454  loss: 0.7870 (0.7837)  main_loss: 0.7870 (0.7837)  class_acc: 0.6484 (0.6462)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1628 (1.2708)  time: 0.3660  data: 0.0001  max mem: 3685
+Epoch: [9]  [22/23]  eta: 0:00:00  lr: 0.004498  min_lr: 0.004498  loss: 0.7922 (0.7928)  main_loss: 0.7922 (0.7928)  class_acc: 0.6445 (0.6420)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2063 (1.3351)  time: 0.3655  data: 0.0001  max mem: 3685
+Epoch: [9] Total time: 0:00:08 (0.3839 s / it)
+Averaged stats: lr: 0.004498  min_lr: 0.004498  loss: 0.7922 (0.7928)  main_loss: 0.7922 (0.7928)  class_acc: 0.6445 (0.6420)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2063 (1.3351)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8205 (0.8205)  main_loss: 0.8205 (0.8205)  accuracy: 0.5781 (0.5781)  precision: 0.3856 (0.3856)  recall: 0.4097 (0.4097)  f1: 0.3927 (0.3927)  time: 0.7415  data: 0.2391  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8205 (0.8279)  main_loss: 0.8205 (0.8279)  accuracy: 0.5781 (0.5995)  precision: 0.3856 (0.5104)  recall: 0.4474 (0.4672)  f1: 0.3927 (0.4652)  time: 0.4414  data: 0.0599  max mem: 3685
+Val: Total time: 0:00:01 (0.4523 s / it)
+* loss 0.828
+AUC of the network on the 1176 val ECG: 73.20%
+Max auc val: 73.54%
+Epoch: [10]  [ 0/23]  eta: 0:00:14  lr: 0.004520  min_lr: 0.004520  loss: 0.8203 (0.8203)  main_loss: 0.8203 (0.8203)  class_acc: 0.6094 (0.6094)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.5768 (0.5768)  time: 0.6457  data: 0.2652  max mem: 3685
+Epoch: [10]  [10/23]  eta: 0:00:05  lr: 0.004738  min_lr: 0.004738  loss: 0.8032 (0.7929)  main_loss: 0.8032 (0.7929)  class_acc: 0.6250 (0.6222)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2910 (1.3847)  time: 0.3914  data: 0.0242  max mem: 3685
+Epoch: [10]  [20/23]  eta: 0:00:01  lr: 0.004956  min_lr: 0.004956  loss: 0.7936 (0.7909)  main_loss: 0.7936 (0.7909)  class_acc: 0.6367 (0.6369)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1770 (1.3043)  time: 0.3664  data: 0.0001  max mem: 3685
+Epoch: [10]  [22/23]  eta: 0:00:00  lr: 0.005000  min_lr: 0.005000  loss: 0.7987 (0.7975)  main_loss: 0.7987 (0.7975)  class_acc: 0.6289 (0.6296)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3835 (1.3734)  time: 0.3662  data: 0.0001  max mem: 3685
+Epoch: [10] Total time: 0:00:08 (0.3811 s / it)
+Averaged stats: lr: 0.005000  min_lr: 0.005000  loss: 0.7987 (0.7975)  main_loss: 0.7987 (0.7975)  class_acc: 0.6289 (0.6296)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3835 (1.3734)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8499 (0.8499)  main_loss: 0.8499 (0.8499)  accuracy: 0.5911 (0.5911)  precision: 0.4903 (0.4903)  recall: 0.4481 (0.4481)  f1: 0.4519 (0.4519)  time: 0.6765  data: 0.1801  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8487 (0.8315)  main_loss: 0.8487 (0.8315)  accuracy: 0.6016 (0.6071)  precision: 0.4903 (0.5324)  recall: 0.4649 (0.4929)  f1: 0.4519 (0.4990)  time: 0.4277  data: 0.0451  max mem: 3685
+Val: Total time: 0:00:01 (0.4428 s / it)
+* loss 0.832
+AUC of the network on the 1176 val ECG: 73.26%
+Max auc val: 73.54%
+Epoch: [11]  [ 0/23]  eta: 0:00:13  lr: 0.005000  min_lr: 0.005000  loss: 0.8333 (0.8333)  main_loss: 0.8333 (0.8333)  class_acc: 0.5820 (0.5820)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9191 (0.9191)  time: 0.6081  data: 0.2319  max mem: 3685
+Epoch: [11]  [10/23]  eta: 0:00:05  lr: 0.004994  min_lr: 0.004994  loss: 0.7924 (0.7944)  main_loss: 0.7924 (0.7944)  class_acc: 0.6289 (0.6264)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0736 (1.4027)  time: 0.3892  data: 0.0212  max mem: 3685
+Epoch: [11]  [20/23]  eta: 0:00:01  lr: 0.004977  min_lr: 0.004977  loss: 0.7978 (0.8010)  main_loss: 0.7978 (0.8010)  class_acc: 0.6289 (0.6289)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0897 (1.3704)  time: 0.3668  data: 0.0001  max mem: 3685
+Epoch: [11]  [22/23]  eta: 0:00:00  lr: 0.004972  min_lr: 0.004972  loss: 0.8046 (0.8046)  main_loss: 0.8046 (0.8046)  class_acc: 0.6289 (0.6279)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1051 (1.3698)  time: 0.3662  data: 0.0001  max mem: 3685
+Epoch: [11] Total time: 0:00:08 (0.3796 s / it)
+Averaged stats: lr: 0.004972  min_lr: 0.004972  loss: 0.8046 (0.8046)  main_loss: 0.8046 (0.8046)  class_acc: 0.6289 (0.6279)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1051 (1.3698)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8574 (0.8574)  main_loss: 0.8574 (0.8574)  accuracy: 0.5573 (0.5573)  precision: 0.4571 (0.4571)  recall: 0.4367 (0.4367)  f1: 0.4406 (0.4406)  time: 0.8766  data: 0.3794  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8574 (0.8547)  main_loss: 0.8574 (0.8547)  accuracy: 0.5573 (0.5765)  precision: 0.4571 (0.5127)  recall: 0.4367 (0.4805)  f1: 0.4406 (0.4876)  time: 0.4784  data: 0.0950  max mem: 3685
+Val: Total time: 0:00:01 (0.4910 s / it)
+* loss 0.855
+AUC of the network on the 1176 val ECG: 72.40%
+Max auc val: 73.54%
+Epoch: [12]  [ 0/23]  eta: 0:00:14  lr: 0.004969  min_lr: 0.004969  loss: 0.8553 (0.8553)  main_loss: 0.8553 (0.8553)  class_acc: 0.5820 (0.5820)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8168 (0.8168)  time: 0.6361  data: 0.2687  max mem: 3685
+Epoch: [12]  [10/23]  eta: 0:00:05  lr: 0.004937  min_lr: 0.004937  loss: 0.7853 (0.7943)  main_loss: 0.7853 (0.7943)  class_acc: 0.6445 (0.6321)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8601 (1.3629)  time: 0.3946  data: 0.0247  max mem: 3685
+Epoch: [12]  [20/23]  eta: 0:00:01  lr: 0.004893  min_lr: 0.004893  loss: 0.7853 (0.7942)  main_loss: 0.7853 (0.7942)  class_acc: 0.6406 (0.6319)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.2958 (1.3278)  time: 0.3690  data: 0.0002  max mem: 3685
+Epoch: [12]  [22/23]  eta: 0:00:00  lr: 0.004883  min_lr: 0.004883  loss: 0.7946 (0.7950)  main_loss: 0.7946 (0.7950)  class_acc: 0.6406 (0.6315)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3050 (1.3206)  time: 0.3677  data: 0.0002  max mem: 3685
+Epoch: [12] Total time: 0:00:08 (0.3842 s / it)
+Averaged stats: lr: 0.004883  min_lr: 0.004883  loss: 0.7946 (0.7950)  main_loss: 0.7946 (0.7950)  class_acc: 0.6406 (0.6315)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3050 (1.3206)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8469 (0.8469)  main_loss: 0.8469 (0.8469)  accuracy: 0.5833 (0.5833)  precision: 0.4543 (0.4543)  recall: 0.4178 (0.4178)  f1: 0.4097 (0.4097)  time: 0.6974  data: 0.1975  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8267 (0.8206)  main_loss: 0.8267 (0.8206)  accuracy: 0.5964 (0.6029)  precision: 0.4543 (0.5337)  recall: 0.4649 (0.4774)  f1: 0.4097 (0.4823)  time: 0.4343  data: 0.0495  max mem: 3685
+Val: Total time: 0:00:01 (0.4500 s / it)
+* loss 0.821
+AUC of the network on the 1176 val ECG: 73.04%
+Max auc val: 73.54%
+Epoch: [13]  [ 0/23]  eta: 0:00:14  lr: 0.004878  min_lr: 0.004878  loss: 0.8370 (0.8370)  main_loss: 0.8370 (0.8370)  class_acc: 0.5820 (0.5820)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.7029 (1.7029)  time: 0.6273  data: 0.2457  max mem: 3685
+Epoch: [13]  [10/23]  eta: 0:00:05  lr: 0.004820  min_lr: 0.004820  loss: 0.7715 (0.7814)  main_loss: 0.7715 (0.7814)  class_acc: 0.6484 (0.6349)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.3634 (1.3736)  time: 0.3941  data: 0.0224  max mem: 3685
+Epoch: [13]  [20/23]  eta: 0:00:01  lr: 0.004751  min_lr: 0.004751  loss: 0.7715 (0.7802)  main_loss: 0.7715 (0.7802)  class_acc: 0.6562 (0.6449)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0364 (1.1676)  time: 0.3691  data: 0.0001  max mem: 3685
+Epoch: [13]  [22/23]  eta: 0:00:00  lr: 0.004736  min_lr: 0.004736  loss: 0.7796 (0.7834)  main_loss: 0.7796 (0.7834)  class_acc: 0.6484 (0.6418)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0364 (1.1855)  time: 0.3681  data: 0.0001  max mem: 3685
+Epoch: [13] Total time: 0:00:08 (0.3829 s / it)
+Averaged stats: lr: 0.004736  min_lr: 0.004736  loss: 0.7796 (0.7834)  main_loss: 0.7796 (0.7834)  class_acc: 0.6484 (0.6418)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0364 (1.1855)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8177 (0.8177)  main_loss: 0.8177 (0.8177)  accuracy: 0.6016 (0.6016)  precision: 0.4798 (0.4798)  recall: 0.4369 (0.4369)  f1: 0.4332 (0.4332)  time: 0.7463  data: 0.2476  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8177 (0.7959)  main_loss: 0.8177 (0.7959)  accuracy: 0.6016 (0.6122)  precision: 0.4798 (0.5470)  recall: 0.4825 (0.5007)  f1: 0.4333 (0.5053)  time: 0.4503  data: 0.0620  max mem: 3685
+Val: Total time: 0:00:01 (0.4661 s / it)
+* loss 0.796
+AUC of the network on the 1176 val ECG: 73.87%
+Max auc val: 73.87%
+Epoch: [14]  [ 0/23]  eta: 0:00:13  lr: 0.004728  min_lr: 0.004728  loss: 0.8295 (0.8295)  main_loss: 0.8295 (0.8295)  class_acc: 0.5977 (0.5977)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9783 (0.9783)  time: 0.5661  data: 0.1846  max mem: 3685
+Epoch: [14]  [10/23]  eta: 0:00:05  lr: 0.004646  min_lr: 0.004646  loss: 0.7656 (0.7593)  main_loss: 0.7656 (0.7593)  class_acc: 0.6484 (0.6527)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9539 (0.9557)  time: 0.3866  data: 0.0169  max mem: 3685
+Epoch: [14]  [20/23]  eta: 0:00:01  lr: 0.004553  min_lr: 0.004553  loss: 0.7656 (0.7680)  main_loss: 0.7656 (0.7680)  class_acc: 0.6484 (0.6570)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9377 (0.9635)  time: 0.3677  data: 0.0001  max mem: 3685
+Epoch: [14]  [22/23]  eta: 0:00:00  lr: 0.004533  min_lr: 0.004533  loss: 0.7656 (0.7730)  main_loss: 0.7656 (0.7730)  class_acc: 0.6484 (0.6517)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9605 (1.0226)  time: 0.3667  data: 0.0001  max mem: 3685
+Epoch: [14] Total time: 0:00:08 (0.3787 s / it)
+Averaged stats: lr: 0.004533  min_lr: 0.004533  loss: 0.7656 (0.7730)  main_loss: 0.7656 (0.7730)  class_acc: 0.6484 (0.6517)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9605 (1.0226)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8476 (0.8476)  main_loss: 0.8476 (0.8476)  accuracy: 0.5911 (0.5911)  precision: 0.3946 (0.3946)  recall: 0.4196 (0.4196)  f1: 0.4029 (0.4029)  time: 0.7848  data: 0.2769  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8209 (0.8306)  main_loss: 0.8209 (0.8306)  accuracy: 0.5911 (0.5918)  precision: 0.3946 (0.4974)  recall: 0.4364 (0.4534)  f1: 0.4029 (0.4424)  time: 0.4550  data: 0.0693  max mem: 3685
+Val: Total time: 0:00:01 (0.4659 s / it)
+* loss 0.831
+AUC of the network on the 1176 val ECG: 72.80%
+Max auc val: 73.87%
+Epoch: [15]  [ 0/23]  eta: 0:00:13  lr: 0.004523  min_lr: 0.004523  loss: 0.7939 (0.7939)  main_loss: 0.7939 (0.7939)  class_acc: 0.6094 (0.6094)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6413 (0.6413)  time: 0.5925  data: 0.2144  max mem: 3685
+Epoch: [15]  [10/23]  eta: 0:00:05  lr: 0.004419  min_lr: 0.004419  loss: 0.7461 (0.7520)  main_loss: 0.7461 (0.7520)  class_acc: 0.6562 (0.6545)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7924 (0.9837)  time: 0.3876  data: 0.0196  max mem: 3685
+Epoch: [15]  [20/23]  eta: 0:00:01  lr: 0.004305  min_lr: 0.004305  loss: 0.7563 (0.7611)  main_loss: 0.7563 (0.7611)  class_acc: 0.6562 (0.6529)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8387 (0.9664)  time: 0.3673  data: 0.0001  max mem: 3685
+Epoch: [15]  [22/23]  eta: 0:00:00  lr: 0.004281  min_lr: 0.004281  loss: 0.7612 (0.7668)  main_loss: 0.7612 (0.7668)  class_acc: 0.6523 (0.6488)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9001 (1.0356)  time: 0.3670  data: 0.0001  max mem: 3685
+Epoch: [15] Total time: 0:00:08 (0.3798 s / it)
+Averaged stats: lr: 0.004281  min_lr: 0.004281  loss: 0.7612 (0.7668)  main_loss: 0.7612 (0.7668)  class_acc: 0.6523 (0.6488)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9001 (1.0356)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8330 (0.8330)  main_loss: 0.8330 (0.8330)  accuracy: 0.5729 (0.5729)  precision: 0.4638 (0.4638)  recall: 0.4547 (0.4547)  f1: 0.4577 (0.4577)  time: 0.7780  data: 0.2806  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8330 (0.8480)  main_loss: 0.8330 (0.8480)  accuracy: 0.5729 (0.5825)  precision: 0.5193 (0.5189)  recall: 0.4967 (0.5090)  f1: 0.5013 (0.5105)  time: 0.4530  data: 0.0702  max mem: 3685
+Val: Total time: 0:00:01 (0.4668 s / it)
+* loss 0.848
+AUC of the network on the 1176 val ECG: 73.81%
+Max auc val: 73.87%
+Epoch: [16]  [ 0/23]  eta: 0:00:15  lr: 0.004269  min_lr: 0.004269  loss: 0.7820 (0.7820)  main_loss: 0.7820 (0.7820)  class_acc: 0.6484 (0.6484)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6682 (0.6682)  time: 0.6621  data: 0.2970  max mem: 3685
+Epoch: [16]  [10/23]  eta: 0:00:05  lr: 0.004145  min_lr: 0.004145  loss: 0.7366 (0.7350)  main_loss: 0.7366 (0.7350)  class_acc: 0.6680 (0.6705)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9382 (1.0138)  time: 0.3975  data: 0.0271  max mem: 3685
+Epoch: [16]  [20/23]  eta: 0:00:01  lr: 0.004013  min_lr: 0.004013  loss: 0.7366 (0.7466)  main_loss: 0.7366 (0.7466)  class_acc: 0.6680 (0.6635)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8533 (1.0471)  time: 0.3710  data: 0.0001  max mem: 3685
+Epoch: [16]  [22/23]  eta: 0:00:00  lr: 0.003985  min_lr: 0.003985  loss: 0.7458 (0.7490)  main_loss: 0.7458 (0.7490)  class_acc: 0.6641 (0.6615)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0057 (1.0779)  time: 0.3707  data: 0.0001  max mem: 3685
+Epoch: [16] Total time: 0:00:08 (0.3876 s / it)
+Averaged stats: lr: 0.003985  min_lr: 0.003985  loss: 0.7458 (0.7490)  main_loss: 0.7458 (0.7490)  class_acc: 0.6641 (0.6615)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0057 (1.0779)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8567 (0.8567)  main_loss: 0.8567 (0.8567)  accuracy: 0.5677 (0.5677)  precision: 0.4695 (0.4695)  recall: 0.4688 (0.4688)  f1: 0.4657 (0.4657)  time: 0.8714  data: 0.3591  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8567 (0.8707)  main_loss: 0.8567 (0.8707)  accuracy: 0.5677 (0.5748)  precision: 0.4695 (0.5034)  recall: 0.4688 (0.5098)  f1: 0.4657 (0.5044)  time: 0.4779  data: 0.0899  max mem: 3685
+Val: Total time: 0:00:01 (0.4989 s / it)
+* loss 0.871
+AUC of the network on the 1176 val ECG: 72.54%
+Max auc val: 73.87%
+Epoch: [17]  [ 0/23]  eta: 0:00:18  lr: 0.003972  min_lr: 0.003972  loss: 0.8037 (0.8037)  main_loss: 0.8037 (0.8037)  class_acc: 0.6133 (0.6133)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6815 (0.6815)  time: 0.8223  data: 0.4394  max mem: 3685
+Epoch: [17]  [10/23]  eta: 0:00:05  lr: 0.003830  min_lr: 0.003830  loss: 0.7106 (0.7236)  main_loss: 0.7106 (0.7236)  class_acc: 0.6719 (0.6641)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8082 (0.7829)  time: 0.4130  data: 0.0401  max mem: 3685
+Epoch: [17]  [20/23]  eta: 0:00:01  lr: 0.003683  min_lr: 0.003683  loss: 0.7221 (0.7365)  main_loss: 0.7221 (0.7365)  class_acc: 0.6641 (0.6637)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7385 (0.7620)  time: 0.3703  data: 0.0001  max mem: 3685
+Epoch: [17]  [22/23]  eta: 0:00:00  lr: 0.003653  min_lr: 0.003653  loss: 0.7221 (0.7385)  main_loss: 0.7221 (0.7385)  class_acc: 0.6641 (0.6642)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8082 (0.7838)  time: 0.3703  data: 0.0001  max mem: 3685
+Epoch: [17] Total time: 0:00:09 (0.3925 s / it)
+Averaged stats: lr: 0.003653  min_lr: 0.003653  loss: 0.7221 (0.7385)  main_loss: 0.7221 (0.7385)  class_acc: 0.6641 (0.6642)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8082 (0.7838)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8542 (0.8542)  main_loss: 0.8542 (0.8542)  accuracy: 0.5938 (0.5938)  precision: 0.4779 (0.4779)  recall: 0.4508 (0.4508)  f1: 0.4525 (0.4525)  time: 0.7829  data: 0.2823  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8473 (0.8340)  main_loss: 0.8473 (0.8340)  accuracy: 0.5990 (0.6054)  precision: 0.4779 (0.5296)  recall: 0.4825 (0.5134)  f1: 0.4525 (0.5159)  time: 0.4545  data: 0.0707  max mem: 3685
+Val: Total time: 0:00:01 (0.4658 s / it)
+* loss 0.834
+AUC of the network on the 1176 val ECG: 72.83%
+Max auc val: 73.87%
+Epoch: [18]  [ 0/23]  eta: 0:00:15  lr: 0.003638  min_lr: 0.003638  loss: 0.7617 (0.7617)  main_loss: 0.7617 (0.7617)  class_acc: 0.6328 (0.6328)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6663 (0.6663)  time: 0.6537  data: 0.2740  max mem: 3685
+Epoch: [18]  [10/23]  eta: 0:00:05  lr: 0.003483  min_lr: 0.003483  loss: 0.7462 (0.7311)  main_loss: 0.7462 (0.7311)  class_acc: 0.6602 (0.6701)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9054 (0.9586)  time: 0.3947  data: 0.0250  max mem: 3685
+Epoch: [18]  [20/23]  eta: 0:00:01  lr: 0.003324  min_lr: 0.003324  loss: 0.7351 (0.7292)  main_loss: 0.7351 (0.7292)  class_acc: 0.6758 (0.6760)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7804 (0.8632)  time: 0.3677  data: 0.0001  max mem: 3685
+Epoch: [18]  [22/23]  eta: 0:00:00  lr: 0.003292  min_lr: 0.003292  loss: 0.7351 (0.7322)  main_loss: 0.7351 (0.7322)  class_acc: 0.6719 (0.6749)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8242 (0.8763)  time: 0.3672  data: 0.0001  max mem: 3685
+Epoch: [18] Total time: 0:00:08 (0.3827 s / it)
+Averaged stats: lr: 0.003292  min_lr: 0.003292  loss: 0.7351 (0.7322)  main_loss: 0.7351 (0.7322)  class_acc: 0.6719 (0.6749)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8242 (0.8763)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8500 (0.8500)  main_loss: 0.8500 (0.8500)  accuracy: 0.5885 (0.5885)  precision: 0.4731 (0.4731)  recall: 0.4637 (0.4637)  f1: 0.4667 (0.4667)  time: 0.7754  data: 0.2603  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8500 (0.8386)  main_loss: 0.8500 (0.8386)  accuracy: 0.5885 (0.5893)  precision: 0.5278 (0.5166)  recall: 0.5125 (0.5008)  f1: 0.5147 (0.5055)  time: 0.4542  data: 0.0652  max mem: 3685
+Val: Total time: 0:00:01 (0.4661 s / it)
+* loss 0.839
+AUC of the network on the 1176 val ECG: 73.83%
+Max auc val: 73.87%
+Epoch: [19]  [ 0/23]  eta: 0:00:14  lr: 0.003276  min_lr: 0.003276  loss: 0.7787 (0.7787)  main_loss: 0.7787 (0.7787)  class_acc: 0.6484 (0.6484)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7261 (0.7261)  time: 0.6265  data: 0.2438  max mem: 3685
+Epoch: [19]  [10/23]  eta: 0:00:05  lr: 0.003112  min_lr: 0.003112  loss: 0.7009 (0.7190)  main_loss: 0.7009 (0.7190)  class_acc: 0.6758 (0.6737)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7378 (0.8257)  time: 0.3916  data: 0.0223  max mem: 3685
+Epoch: [19]  [20/23]  eta: 0:00:01  lr: 0.002946  min_lr: 0.002946  loss: 0.7297 (0.7260)  main_loss: 0.7297 (0.7260)  class_acc: 0.6641 (0.6713)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8441 (0.8582)  time: 0.3683  data: 0.0001  max mem: 3685
+Epoch: [19]  [22/23]  eta: 0:00:00  lr: 0.002912  min_lr: 0.002912  loss: 0.7297 (0.7293)  main_loss: 0.7297 (0.7293)  class_acc: 0.6641 (0.6702)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8642 (0.8758)  time: 0.3684  data: 0.0001  max mem: 3685
+Epoch: [19] Total time: 0:00:08 (0.3821 s / it)
+Averaged stats: lr: 0.002912  min_lr: 0.002912  loss: 0.7297 (0.7293)  main_loss: 0.7297 (0.7293)  class_acc: 0.6641 (0.6702)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8642 (0.8758)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8189 (0.8189)  main_loss: 0.8189 (0.8189)  accuracy: 0.5807 (0.5807)  precision: 0.4277 (0.4277)  recall: 0.4244 (0.4244)  f1: 0.4173 (0.4173)  time: 0.7167  data: 0.2090  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8413 (0.8607)  main_loss: 0.8413 (0.8607)  accuracy: 0.5807 (0.5808)  precision: 0.4277 (0.5265)  recall: 0.4244 (0.4644)  f1: 0.4173 (0.4645)  time: 0.4380  data: 0.0524  max mem: 3685
+Val: Total time: 0:00:01 (0.4517 s / it)
+* loss 0.861
+AUC of the network on the 1176 val ECG: 72.70%
+Max auc val: 73.87%
+Epoch: [20]  [ 0/23]  eta: 0:00:14  lr: 0.002895  min_lr: 0.002895  loss: 0.7407 (0.7407)  main_loss: 0.7407 (0.7407)  class_acc: 0.6641 (0.6641)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.5810 (0.5810)  time: 0.6213  data: 0.2422  max mem: 3685
+Epoch: [20]  [10/23]  eta: 0:00:05  lr: 0.002726  min_lr: 0.002726  loss: 0.7049 (0.7067)  main_loss: 0.7049 (0.7067)  class_acc: 0.6953 (0.6864)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7772 (0.8662)  time: 0.3944  data: 0.0221  max mem: 3685
+Epoch: [20]  [20/23]  eta: 0:00:01  lr: 0.002556  min_lr: 0.002556  loss: 0.7055 (0.7145)  main_loss: 0.7055 (0.7145)  class_acc: 0.6836 (0.6814)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8201 (0.8631)  time: 0.3714  data: 0.0001  max mem: 3685
+Epoch: [20]  [22/23]  eta: 0:00:00  lr: 0.002522  min_lr: 0.002522  loss: 0.7049 (0.7169)  main_loss: 0.7049 (0.7169)  class_acc: 0.6836 (0.6809)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8201 (0.8671)  time: 0.3716  data: 0.0001  max mem: 3685
+Epoch: [20] Total time: 0:00:08 (0.3854 s / it)
+Averaged stats: lr: 0.002522  min_lr: 0.002522  loss: 0.7049 (0.7169)  main_loss: 0.7049 (0.7169)  class_acc: 0.6836 (0.6809)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8201 (0.8671)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8381 (0.8381)  main_loss: 0.8381 (0.8381)  accuracy: 0.5781 (0.5781)  precision: 0.4290 (0.4290)  recall: 0.4145 (0.4145)  f1: 0.4066 (0.4066)  time: 0.7498  data: 0.2426  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8381 (0.8290)  main_loss: 0.8381 (0.8290)  accuracy: 0.6094 (0.6122)  precision: 0.4545 (0.5657)  recall: 0.4944 (0.4802)  f1: 0.4756 (0.4862)  time: 0.4462  data: 0.0607  max mem: 3685
+Val: Total time: 0:00:01 (0.4593 s / it)
+* loss 0.829
+AUC of the network on the 1176 val ECG: 72.78%
+Max auc val: 73.87%
+Epoch: [21]  [ 0/23]  eta: 0:00:13  lr: 0.002505  min_lr: 0.002505  loss: 0.7988 (0.7988)  main_loss: 0.7988 (0.7988)  class_acc: 0.6289 (0.6289)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8234 (0.8234)  time: 0.5929  data: 0.2021  max mem: 3685
+Epoch: [21]  [10/23]  eta: 0:00:05  lr: 0.002335  min_lr: 0.002335  loss: 0.7141 (0.7155)  main_loss: 0.7141 (0.7155)  class_acc: 0.6719 (0.6701)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7837 (0.8849)  time: 0.3938  data: 0.0185  max mem: 3685
+Epoch: [21]  [20/23]  eta: 0:00:01  lr: 0.002165  min_lr: 0.002165  loss: 0.7141 (0.7169)  main_loss: 0.7141 (0.7169)  class_acc: 0.6758 (0.6771)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7667 (0.8758)  time: 0.3722  data: 0.0001  max mem: 3685
+Epoch: [21]  [22/23]  eta: 0:00:00  lr: 0.002132  min_lr: 0.002132  loss: 0.7141 (0.7200)  main_loss: 0.7141 (0.7200)  class_acc: 0.6758 (0.6754)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7667 (0.8747)  time: 0.3714  data: 0.0001  max mem: 3685
+Epoch: [21] Total time: 0:00:08 (0.3840 s / it)
+Averaged stats: lr: 0.002132  min_lr: 0.002132  loss: 0.7141 (0.7200)  main_loss: 0.7141 (0.7200)  class_acc: 0.6758 (0.6754)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7667 (0.8747)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8428 (0.8428)  main_loss: 0.8428 (0.8428)  accuracy: 0.5885 (0.5885)  precision: 0.4719 (0.4719)  recall: 0.4286 (0.4286)  f1: 0.4255 (0.4255)  time: 0.7557  data: 0.2545  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8428 (0.8319)  main_loss: 0.8428 (0.8319)  accuracy: 0.6016 (0.6097)  precision: 0.4719 (0.5568)  recall: 0.4649 (0.4904)  f1: 0.4255 (0.4977)  time: 0.4508  data: 0.0637  max mem: 3685
+Val: Total time: 0:00:01 (0.4626 s / it)
+* loss 0.832
+AUC of the network on the 1176 val ECG: 72.71%
+Max auc val: 73.87%
+Epoch: [22]  [ 0/23]  eta: 0:00:13  lr: 0.002115  min_lr: 0.002115  loss: 0.7660 (0.7660)  main_loss: 0.7660 (0.7660)  class_acc: 0.6367 (0.6367)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7286 (0.7286)  time: 0.6008  data: 0.2199  max mem: 3685
+Epoch: [22]  [10/23]  eta: 0:00:05  lr: 0.001947  min_lr: 0.001947  loss: 0.6909 (0.6966)  main_loss: 0.6909 (0.6966)  class_acc: 0.6836 (0.6786)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7286 (0.8356)  time: 0.3907  data: 0.0201  max mem: 3685
+Epoch: [22]  [20/23]  eta: 0:00:01  lr: 0.001783  min_lr: 0.001783  loss: 0.6909 (0.6990)  main_loss: 0.6909 (0.6990)  class_acc: 0.6953 (0.6908)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7158 (0.8545)  time: 0.3698  data: 0.0001  max mem: 3685
+Epoch: [22]  [22/23]  eta: 0:00:00  lr: 0.001750  min_lr: 0.001750  loss: 0.6948 (0.7028)  main_loss: 0.6948 (0.7028)  class_acc: 0.6914 (0.6863)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8070 (0.8668)  time: 0.3701  data: 0.0001  max mem: 3685
+Epoch: [22] Total time: 0:00:08 (0.3833 s / it)
+Averaged stats: lr: 0.001750  min_lr: 0.001750  loss: 0.6948 (0.7028)  main_loss: 0.6948 (0.7028)  class_acc: 0.6914 (0.6863)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8070 (0.8668)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8520 (0.8520)  main_loss: 0.8520 (0.8520)  accuracy: 0.5807 (0.5807)  precision: 0.4483 (0.4483)  recall: 0.4292 (0.4292)  f1: 0.4281 (0.4281)  time: 0.7965  data: 0.2835  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8520 (0.8560)  main_loss: 0.8520 (0.8560)  accuracy: 0.5807 (0.5799)  precision: 0.4483 (0.5215)  recall: 0.4474 (0.4781)  f1: 0.4281 (0.4858)  time: 0.4600  data: 0.0710  max mem: 3685
+Val: Total time: 0:00:01 (0.4762 s / it)
+* loss 0.856
+AUC of the network on the 1176 val ECG: 72.22%
+Max auc val: 73.87%
+Epoch: [23]  [ 0/23]  eta: 0:00:14  lr: 0.001734  min_lr: 0.001734  loss: 0.7313 (0.7313)  main_loss: 0.7313 (0.7313)  class_acc: 0.6641 (0.6641)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.5844 (0.5844)  time: 0.6337  data: 0.2610  max mem: 3685
+Epoch: [23]  [10/23]  eta: 0:00:05  lr: 0.001574  min_lr: 0.001574  loss: 0.6827 (0.6828)  main_loss: 0.6827 (0.6828)  class_acc: 0.6953 (0.6985)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8376 (0.8468)  time: 0.3982  data: 0.0238  max mem: 3685
+Epoch: [23]  [20/23]  eta: 0:00:01  lr: 0.001418  min_lr: 0.001418  loss: 0.6912 (0.6907)  main_loss: 0.6912 (0.6907)  class_acc: 0.6953 (0.6970)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8549 (0.8526)  time: 0.3731  data: 0.0001  max mem: 3685
+Epoch: [23]  [22/23]  eta: 0:00:00  lr: 0.001388  min_lr: 0.001388  loss: 0.6936 (0.6919)  main_loss: 0.6936 (0.6919)  class_acc: 0.6953 (0.6950)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8782 (0.8830)  time: 0.3720  data: 0.0001  max mem: 3685
+Epoch: [23] Total time: 0:00:08 (0.3865 s / it)
+Averaged stats: lr: 0.001388  min_lr: 0.001388  loss: 0.6936 (0.6919)  main_loss: 0.6936 (0.6919)  class_acc: 0.6953 (0.6950)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8782 (0.8830)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8629 (0.8629)  main_loss: 0.8629 (0.8629)  accuracy: 0.5859 (0.5859)  precision: 0.4667 (0.4667)  recall: 0.4479 (0.4479)  f1: 0.4503 (0.4503)  time: 0.7575  data: 0.2489  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8629 (0.8798)  main_loss: 0.8629 (0.8798)  accuracy: 0.5833 (0.5808)  precision: 0.4667 (0.5086)  recall: 0.4479 (0.4995)  f1: 0.4503 (0.5004)  time: 0.4510  data: 0.0623  max mem: 3685
+Val: Total time: 0:00:01 (0.4648 s / it)
+* loss 0.880
+AUC of the network on the 1176 val ECG: 72.43%
+Max auc val: 73.87%
+Epoch: [24]  [ 0/23]  eta: 0:00:14  lr: 0.001372  min_lr: 0.001372  loss: 0.7194 (0.7194)  main_loss: 0.7194 (0.7194)  class_acc: 0.6758 (0.6758)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7738 (0.7738)  time: 0.6175  data: 0.2330  max mem: 3685
+Epoch: [24]  [10/23]  eta: 0:00:05  lr: 0.001223  min_lr: 0.001223  loss: 0.6813 (0.6749)  main_loss: 0.6813 (0.6749)  class_acc: 0.6797 (0.6914)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8652 (0.8666)  time: 0.3933  data: 0.0213  max mem: 3685
+Epoch: [24]  [20/23]  eta: 0:00:01  lr: 0.001080  min_lr: 0.001080  loss: 0.6813 (0.6783)  main_loss: 0.6813 (0.6783)  class_acc: 0.6875 (0.6944)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8717 (0.9071)  time: 0.3697  data: 0.0001  max mem: 3685
+Epoch: [24]  [22/23]  eta: 0:00:00  lr: 0.001052  min_lr: 0.001052  loss: 0.6813 (0.6814)  main_loss: 0.6813 (0.6814)  class_acc: 0.6875 (0.6924)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9565 (0.9217)  time: 0.3692  data: 0.0001  max mem: 3685
+Epoch: [24] Total time: 0:00:08 (0.3835 s / it)
+Averaged stats: lr: 0.001052  min_lr: 0.001052  loss: 0.6813 (0.6814)  main_loss: 0.6813 (0.6814)  class_acc: 0.6875 (0.6924)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9565 (0.9217)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8626 (0.8626)  main_loss: 0.8626 (0.8626)  accuracy: 0.5833 (0.5833)  precision: 0.4602 (0.4602)  recall: 0.4383 (0.4383)  f1: 0.4397 (0.4397)  time: 0.7339  data: 0.2336  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8626 (0.8695)  main_loss: 0.8626 (0.8695)  accuracy: 0.5833 (0.5799)  precision: 0.4602 (0.5237)  recall: 0.4383 (0.4849)  f1: 0.4397 (0.4914)  time: 0.4451  data: 0.0585  max mem: 3685
+Val: Total time: 0:00:01 (0.4563 s / it)
+* loss 0.870
+AUC of the network on the 1176 val ECG: 72.70%
+Max auc val: 73.87%
+Epoch: [25]  [ 0/23]  eta: 0:00:12  lr: 0.001038  min_lr: 0.001038  loss: 0.6872 (0.6872)  main_loss: 0.6872 (0.6872)  class_acc: 0.6758 (0.6758)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.5185 (0.5185)  time: 0.5517  data: 0.1620  max mem: 3685
+Epoch: [25]  [10/23]  eta: 0:00:05  lr: 0.000904  min_lr: 0.000904  loss: 0.6872 (0.6854)  main_loss: 0.6872 (0.6854)  class_acc: 0.6875 (0.6875)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8799 (0.8704)  time: 0.3866  data: 0.0148  max mem: 3685
+Epoch: [25]  [20/23]  eta: 0:00:01  lr: 0.000777  min_lr: 0.000777  loss: 0.6806 (0.6814)  main_loss: 0.6806 (0.6814)  class_acc: 0.6914 (0.6949)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8336 (0.8456)  time: 0.3692  data: 0.0001  max mem: 3685
+Epoch: [25]  [22/23]  eta: 0:00:00  lr: 0.000753  min_lr: 0.000753  loss: 0.6806 (0.6844)  main_loss: 0.6806 (0.6844)  class_acc: 0.6914 (0.6934)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8336 (0.8773)  time: 0.3684  data: 0.0001  max mem: 3685
+Epoch: [25] Total time: 0:00:08 (0.3796 s / it)
+Averaged stats: lr: 0.000753  min_lr: 0.000753  loss: 0.6806 (0.6844)  main_loss: 0.6806 (0.6844)  class_acc: 0.6914 (0.6934)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.8336 (0.8773)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:03  loss: 0.8866 (0.8866)  main_loss: 0.8866 (0.8866)  accuracy: 0.6094 (0.6094)  precision: 0.4932 (0.4932)  recall: 0.4430 (0.4430)  f1: 0.4402 (0.4402)  time: 0.7909  data: 0.2865  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8866 (0.8501)  main_loss: 0.8866 (0.8501)  accuracy: 0.6094 (0.6165)  precision: 0.4932 (0.5589)  recall: 0.4825 (0.4911)  f1: 0.4402 (0.4988)  time: 0.4570  data: 0.0717  max mem: 3685
+Val: Total time: 0:00:01 (0.4706 s / it)
+* loss 0.850
+AUC of the network on the 1176 val ECG: 73.00%
+Max auc val: 73.87%
+Epoch: [26]  [ 0/23]  eta: 0:00:14  lr: 0.000741  min_lr: 0.000741  loss: 0.7496 (0.7496)  main_loss: 0.7496 (0.7496)  class_acc: 0.6641 (0.6641)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0189 (1.0189)  time: 0.6266  data: 0.2482  max mem: 3685
+Epoch: [26]  [10/23]  eta: 0:00:05  lr: 0.000624  min_lr: 0.000624  loss: 0.6481 (0.6563)  main_loss: 0.6481 (0.6563)  class_acc: 0.7031 (0.7024)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7328 (0.8145)  time: 0.3924  data: 0.0227  max mem: 3685
+Epoch: [26]  [20/23]  eta: 0:00:01  lr: 0.000517  min_lr: 0.000517  loss: 0.6551 (0.6595)  main_loss: 0.6551 (0.6595)  class_acc: 0.7070 (0.7048)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6965 (0.7735)  time: 0.3693  data: 0.0001  max mem: 3685
+Epoch: [26]  [22/23]  eta: 0:00:00  lr: 0.000497  min_lr: 0.000497  loss: 0.6556 (0.6641)  main_loss: 0.6556 (0.6641)  class_acc: 0.7070 (0.7026)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7328 (0.7894)  time: 0.3686  data: 0.0001  max mem: 3685
+Epoch: [26] Total time: 0:00:08 (0.3828 s / it)
+Averaged stats: lr: 0.000497  min_lr: 0.000497  loss: 0.6556 (0.6641)  main_loss: 0.6556 (0.6641)  class_acc: 0.7070 (0.7026)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7328 (0.7894)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8821 (0.8821)  main_loss: 0.8821 (0.8821)  accuracy: 0.5911 (0.5911)  precision: 0.4560 (0.4560)  recall: 0.4323 (0.4323)  f1: 0.4299 (0.4299)  time: 0.7485  data: 0.2388  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8821 (0.8532)  main_loss: 0.8821 (0.8532)  accuracy: 0.6016 (0.6012)  precision: 0.4560 (0.5282)  recall: 0.4649 (0.4918)  f1: 0.4299 (0.4976)  time: 0.4487  data: 0.0598  max mem: 3685
+Val: Total time: 0:00:01 (0.4607 s / it)
+* loss 0.853
+AUC of the network on the 1176 val ECG: 73.28%
+Max auc val: 73.87%
+Epoch: [27]  [ 0/23]  eta: 0:00:15  lr: 0.000487  min_lr: 0.000487  loss: 0.7428 (0.7428)  main_loss: 0.7428 (0.7428)  class_acc: 0.6133 (0.6133)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.9812 (0.9812)  time: 0.6529  data: 0.2749  max mem: 3685
+Epoch: [27]  [10/23]  eta: 0:00:05  lr: 0.000391  min_lr: 0.000391  loss: 0.6517 (0.6536)  main_loss: 0.6517 (0.6536)  class_acc: 0.7266 (0.7116)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7222 (0.7616)  time: 0.3957  data: 0.0251  max mem: 3685
+Epoch: [27]  [20/23]  eta: 0:00:01  lr: 0.000306  min_lr: 0.000306  loss: 0.6517 (0.6542)  main_loss: 0.6517 (0.6542)  class_acc: 0.7188 (0.7148)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6975 (0.7403)  time: 0.3697  data: 0.0001  max mem: 3685
+Epoch: [27]  [22/23]  eta: 0:00:00  lr: 0.000290  min_lr: 0.000290  loss: 0.6646 (0.6589)  main_loss: 0.6646 (0.6589)  class_acc: 0.7109 (0.7118)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7056 (0.7595)  time: 0.3695  data: 0.0001  max mem: 3685
+Epoch: [27] Total time: 0:00:08 (0.3848 s / it)
+Averaged stats: lr: 0.000290  min_lr: 0.000290  loss: 0.6646 (0.6589)  main_loss: 0.6646 (0.6589)  class_acc: 0.7109 (0.7118)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7056 (0.7595)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8930 (0.8930)  main_loss: 0.8930 (0.8930)  accuracy: 0.6042 (0.6042)  precision: 0.4927 (0.4927)  recall: 0.4407 (0.4407)  f1: 0.4388 (0.4388)  time: 0.7285  data: 0.2259  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8892 (0.8560)  main_loss: 0.8892 (0.8560)  accuracy: 0.6146 (0.6156)  precision: 0.4927 (0.5604)  recall: 0.4649 (0.4954)  f1: 0.4388 (0.5040)  time: 0.4437  data: 0.0566  max mem: 3685
+Val: Total time: 0:00:01 (0.4558 s / it)
+* loss 0.856
+AUC of the network on the 1176 val ECG: 73.31%
+Max auc val: 73.87%
+Epoch: [28]  [ 0/23]  eta: 0:00:16  lr: 0.000282  min_lr: 0.000282  loss: 0.7516 (0.7516)  main_loss: 0.7516 (0.7516)  class_acc: 0.6641 (0.6641)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.0159 (1.0159)  time: 0.7032  data: 0.3207  max mem: 3685
+Epoch: [28]  [10/23]  eta: 0:00:05  lr: 0.000210  min_lr: 0.000210  loss: 0.6542 (0.6590)  main_loss: 0.6542 (0.6590)  class_acc: 0.7109 (0.7092)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7483 (0.7518)  time: 0.4005  data: 0.0292  max mem: 3685
+Epoch: [28]  [20/23]  eta: 0:00:01  lr: 0.000148  min_lr: 0.000148  loss: 0.6490 (0.6575)  main_loss: 0.6490 (0.6575)  class_acc: 0.7188 (0.7113)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6633 (0.7254)  time: 0.3699  data: 0.0001  max mem: 3685
+Epoch: [28]  [22/23]  eta: 0:00:00  lr: 0.000137  min_lr: 0.000137  loss: 0.6490 (0.6606)  main_loss: 0.6490 (0.6606)  class_acc: 0.7109 (0.7091)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7031 (0.7420)  time: 0.3697  data: 0.0001  max mem: 3685
+Epoch: [28] Total time: 0:00:08 (0.3868 s / it)
+Averaged stats: lr: 0.000137  min_lr: 0.000137  loss: 0.6490 (0.6606)  main_loss: 0.6490 (0.6606)  class_acc: 0.7109 (0.7091)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7031 (0.7420)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8848 (0.8848)  main_loss: 0.8848 (0.8848)  accuracy: 0.6068 (0.6068)  precision: 0.5109 (0.5109)  recall: 0.4424 (0.4424)  f1: 0.4404 (0.4404)  time: 0.6913  data: 0.1983  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8848 (0.8536)  main_loss: 0.8848 (0.8536)  accuracy: 0.6198 (0.6199)  precision: 0.5109 (0.5938)  recall: 0.4649 (0.4973)  f1: 0.4404 (0.5091)  time: 0.4355  data: 0.0497  max mem: 3685
+Val: Total time: 0:00:01 (0.4504 s / it)
+* loss 0.854
+AUC of the network on the 1176 val ECG: 73.36%
+Max auc val: 73.87%
+Epoch: [29]  [ 0/23]  eta: 0:00:16  lr: 0.000132  min_lr: 0.000132  loss: 0.7288 (0.7288)  main_loss: 0.7288 (0.7288)  class_acc: 0.6641 (0.6641)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 1.1012 (1.1012)  time: 0.7190  data: 0.3426  max mem: 3685
+Epoch: [29]  [10/23]  eta: 0:00:05  lr: 0.000085  min_lr: 0.000085  loss: 0.6366 (0.6439)  main_loss: 0.6366 (0.6439)  class_acc: 0.7188 (0.7138)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6661 (0.7172)  time: 0.4039  data: 0.0313  max mem: 3685
+Epoch: [29]  [20/23]  eta: 0:00:01  lr: 0.000049  min_lr: 0.000049  loss: 0.6347 (0.6441)  main_loss: 0.6347 (0.6441)  class_acc: 0.7188 (0.7167)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6578 (0.6862)  time: 0.3711  data: 0.0001  max mem: 3685
+Epoch: [29]  [22/23]  eta: 0:00:00  lr: 0.000043  min_lr: 0.000043  loss: 0.6357 (0.6489)  main_loss: 0.6357 (0.6489)  class_acc: 0.7188 (0.7142)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6602 (0.7003)  time: 0.3700  data: 0.0001  max mem: 3685
+Epoch: [29] Total time: 0:00:08 (0.3882 s / it)
+Averaged stats: lr: 0.000043  min_lr: 0.000043  loss: 0.6357 (0.6489)  main_loss: 0.6357 (0.6489)  class_acc: 0.7188 (0.7142)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6602 (0.7003)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8801 (0.8801)  main_loss: 0.8801 (0.8801)  accuracy: 0.5885 (0.5885)  precision: 0.4651 (0.4651)  recall: 0.4322 (0.4322)  f1: 0.4310 (0.4310)  time: 0.7436  data: 0.2429  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8801 (0.8581)  main_loss: 0.8801 (0.8581)  accuracy: 0.6042 (0.6071)  precision: 0.4651 (0.5418)  recall: 0.4649 (0.4935)  f1: 0.4310 (0.5011)  time: 0.4499  data: 0.0608  max mem: 3685
+Val: Total time: 0:00:01 (0.4608 s / it)
+* loss 0.858
+AUC of the network on the 1176 val ECG: 73.42%
+Max auc val: 73.87%
+Epoch: [30]  [ 0/23]  eta: 0:00:14  lr: 0.000041  min_lr: 0.000041  loss: 0.6868 (0.6868)  main_loss: 0.6868 (0.6868)  class_acc: 0.7148 (0.7148)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.7448 (0.7448)  time: 0.6274  data: 0.2389  max mem: 3685
+Epoch: [30]  [10/23]  eta: 0:00:05  lr: 0.000020  min_lr: 0.000020  loss: 0.6293 (0.6343)  main_loss: 0.6293 (0.6343)  class_acc: 0.7266 (0.7280)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6090 (0.6705)  time: 0.3934  data: 0.0218  max mem: 3685
+Epoch: [30]  [20/23]  eta: 0:00:01  lr: 0.000011  min_lr: 0.000011  loss: 0.6311 (0.6406)  main_loss: 0.6311 (0.6406)  class_acc: 0.7148 (0.7197)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6081 (0.6566)  time: 0.3696  data: 0.0001  max mem: 3685
+Epoch: [30]  [22/23]  eta: 0:00:00  lr: 0.000010  min_lr: 0.000010  loss: 0.6382 (0.6429)  main_loss: 0.6382 (0.6429)  class_acc: 0.7148 (0.7196)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6090 (0.6681)  time: 0.3695  data: 0.0001  max mem: 3685
+Epoch: [30] Total time: 0:00:08 (0.3838 s / it)
+Averaged stats: lr: 0.000010  min_lr: 0.000010  loss: 0.6382 (0.6429)  main_loss: 0.6382 (0.6429)  class_acc: 0.7148 (0.7196)  loss_scale: 1.0000 (1.0000)  weight_decay: 0.0500 (0.0500)  grad_norm: 0.6090 (0.6681)
+Eval batch size = 384
+Number of eval examples = 1176
+Number of eval steps in one epoch = 4
+Val:  [0/4]  eta: 0:00:02  loss: 0.8817 (0.8817)  main_loss: 0.8817 (0.8817)  accuracy: 0.5859 (0.5859)  precision: 0.4632 (0.4632)  recall: 0.4300 (0.4300)  f1: 0.4286 (0.4286)  time: 0.7184  data: 0.2056  max mem: 3685
+Val:  [3/4]  eta: 0:00:00  loss: 0.8817 (0.8580)  main_loss: 0.8817 (0.8580)  accuracy: 0.6016 (0.6029)  precision: 0.4632 (0.5347)  recall: 0.4649 (0.4902)  f1: 0.4286 (0.4970)  time: 0.4410  data: 0.0515  max mem: 3685
+Val: Total time: 0:00:01 (0.4557 s / it)
+* loss 0.858
+AUC of the network on the 1176 val ECG: 73.39%
+Max auc val: 73.87%
+Training time 0:05:40

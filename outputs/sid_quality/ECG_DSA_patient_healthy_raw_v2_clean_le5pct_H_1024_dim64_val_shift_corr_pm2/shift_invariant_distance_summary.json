@@ -1,0 +1,16 @@
+{
+  "distance_mode": "local_shift_invariant_correlation",
+  "max_shift": 2,
+  "eligible_sids": 727,
+  "intra_pairs": 186112,
+  "inter_pairs": 200000,
+  "intra_shift_corr_dist_mean": 0.3343458624123739,
+  "intra_shift_corr_dist_p50": 0.2521572105912533,
+  "intra_shift_corr_dist_p90": 0.7372000085059794,
+  "inter_shift_corr_dist_mean": 0.7936853607377424,
+  "inter_shift_corr_dist_p50": 0.8721587602211416,
+  "inter_shift_corr_dist_p90": 1.1213991961003542,
+  "inter_over_intra_shift_corr_ratio": 2.3738453199663963,
+  "intra_best_abs_shift_mean": 0.8353303387207703,
+  "inter_best_abs_shift_mean": 1.509655
+}

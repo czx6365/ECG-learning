@@ -1,0 +1,17 @@
+{
+  "num_codes": 1024,
+  "code_dim": 64,
+  "norm_mean": 1.0,
+  "norm_std": 2.9155009073633664e-08,
+  "norm_min": 0.9999998807907104,
+  "norm_max": 1.0000001192092896,
+  "pairwise_sample_size": 1024,
+  "pairwise_sample_source": "all_codes",
+  "cosine_mean": 0.08848978259935597,
+  "cosine_std": 0.2563256188321921,
+  "cosine_p01": -0.5046180563278114,
+  "cosine_p50": 0.0513175148015641,
+  "cosine_p95": 0.5907739512088281,
+  "cosine_p99": 0.7708842466697889,
+  "cosine_max": 0.9630306822356703
+}

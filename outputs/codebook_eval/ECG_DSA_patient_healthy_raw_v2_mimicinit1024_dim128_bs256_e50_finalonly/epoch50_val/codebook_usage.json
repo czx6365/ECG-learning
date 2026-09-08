@@ -1,0 +1,67 @@
+{
+  "total_tokens": 1174616,
+  "codebook_size": 1024,
+  "active_codes": 501,
+  "active_ratio": 0.4892578125,
+  "dead_codes": 523,
+  "dead_ratio": 0.5107421875,
+  "entropy": 6.154028485461808,
+  "perplexity": 470.6094164089246,
+  "top_1_percent_usage": 0.05175819161325914,
+  "top_10_codes": [
+    {
+      "code_id": 125,
+      "count": 6991,
+      "frequency": 0.005951732310814768
+    },
+    {
+      "code_id": 619,
+      "count": 6622,
+      "frequency": 0.00563758709229229
+    },
+    {
+      "code_id": 297,
+      "count": 6435,
+      "frequency": 0.005478386127892009
+    },
+    {
+      "code_id": 261,
+      "count": 5436,
+      "frequency": 0.004627895414331152
+    },
+    {
+      "code_id": 185,
+      "count": 5422,
+      "frequency": 0.004615976625552521
+    },
+    {
+      "code_id": 442,
+      "count": 5340,
+      "frequency": 0.00454616657699197
+    },
+    {
+      "code_id": 601,
+      "count": 5017,
+      "frequency": 0.004271183093027849
+    },
+    {
+      "code_id": 439,
+      "count": 4951,
+      "frequency": 0.004214994517357162
+    },
+    {
+      "code_id": 320,
+      "count": 4921,
+      "frequency": 0.004189454255688668
+    },
+    {
+      "code_id": 789,
+      "count": 4868,
+      "frequency": 0.0041443331267409945
+    }
+  ],
+  "checkpoint_path": "/home/ubuntu/HeartLang-main/checkpoints/vqhbr/ECG_DSA_patient_healthy_raw_v2_mimicinit1024_dim128_bs256_e50_finalonly/checkpoint-50.pth",
+  "data_path": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v2",
+  "split": "val",
+  "used_samples": 9877
+}

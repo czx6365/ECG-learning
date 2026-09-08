@@ -1,0 +1,5 @@
+Time,Dataset Directory,Model,Trainable Layer,Split Ratio,Sampling Method,ROC AUC
+2026-08-31 03:44:47,datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label3,ecg_dsa,linear,1.0,random,0.7141688200616486
+2026-08-31 07:43:12,datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label3,ecg_dsa,linear,1.0,random,0.7112949012544908
+2026-09-07 01:52:18,datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label3,ecg_dsa,linear,1.0,random,0.7141688200616486
+2026-09-07 01:52:27,datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label3,ecg_dsa,linear,1.0,random,0.7052617836582614

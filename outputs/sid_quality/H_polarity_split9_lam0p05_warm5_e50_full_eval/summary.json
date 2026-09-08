@@ -1,0 +1,182 @@
+{
+  "checkpoint": "/home/ubuntu/HeartLang-main/checkpoints/vqhbr/H_polarity_split9_lam0p05_warm5_e50_finalonly/checkpoint-50.pth",
+  "data_path": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v2_clean_le5pct",
+  "split": "val",
+  "target_pairs": [
+    [
+      823,
+      3
+    ],
+    [
+      578,
+      6
+    ],
+    [
+      493,
+      8
+    ],
+    [
+      200,
+      9
+    ],
+    [
+      218,
+      10
+    ],
+    [
+      858,
+      15
+    ],
+    [
+      517,
+      16
+    ],
+    [
+      565,
+      17
+    ],
+    [
+      65,
+      22
+    ]
+  ],
+  "usage": {
+    "total_tokens": 1117683,
+    "active_codes": 773,
+    "dead_codes": 251,
+    "perplexity": 696.998079228542,
+    "top1pct_usage": 0.0436232813776357
+  },
+  "reconstruction": {
+    "mse": 0.061720106355008436,
+    "rmse": 0.24843531623947598,
+    "mae": 0.1016735684540399,
+    "prd": 34.709975113267305,
+    "snr": 9.19091396755449
+  },
+  "polarity": {
+    "macro_global_polarity_majority": 0.8249365677979174,
+    "weighted_global_polarity_majority": 0.8376704307035179,
+    "macro_per_lead_polarity_majority": 0.8815582131074943,
+    "weighted_per_lead_polarity_majority": 0.8918304801374236,
+    "paired_assignment_accuracy": 0.943291247592553,
+    "paired_polarity_collision_rate": 0.056708752407446994,
+    "paired_assigned_tokens": 28038
+  },
+  "distance": {
+    "eligible_sids": 772,
+    "macro_intra_shift_corr": 0.29533345866507177,
+    "sample_weighted_intra_shift_corr": 0.29533345866507177,
+    "intra_shift_corr_p90": 0.6182307006917869,
+    "overall_inter_shift_corr": 0.5976384197624377,
+    "inter_over_intra": 2.0236055286922308,
+    "paired_sibling_inter_shift_corr": 0.6489826676910897,
+    "non_sibling_inter_shift_corr": 0.5976363659103666,
+    "intra_pairs": 197632,
+    "inter_pairs": 200000,
+    "sibling_inter_pairs": 8,
+    "silhouette_cosine": -0.4764517545700073,
+    "nearest_code_margin": 0.030985090341382436
+  },
+  "target_pairs_table": [
+    {
+      "positive_code": 823,
+      "negative_code": 3,
+      "positive_count": 2454,
+      "negative_count": 1953,
+      "positive_intra_shift_corr": 0.25525993967710014,
+      "negative_intra_shift_corr": 0.22438640554946016,
+      "positive_polarity_majority": 0.9690301548492257,
+      "negative_polarity_majority": 0.946236559139785,
+      "paired_code_cosine_distance": 0.2476554512985124
+    },
+    {
+      "positive_code": 578,
+      "negative_code": 6,
+      "positive_count": 871,
+      "negative_count": 972,
+      "positive_intra_shift_corr": 0.37664757422836126,
+      "negative_intra_shift_corr": 0.3917285866796545,
+      "positive_polarity_majority": 0.9437428243398392,
+      "negative_polarity_majority": 0.9331275720164609,
+      "paired_code_cosine_distance": 0.4951848978029647
+    },
+    {
+      "positive_code": 493,
+      "negative_code": 8,
+      "positive_count": 1570,
+      "negative_count": 1582,
+      "positive_intra_shift_corr": 0.41176239616578714,
+      "negative_intra_shift_corr": 0.3549245983650761,
+      "positive_polarity_majority": 0.9254777070063694,
+      "negative_polarity_majority": 0.9077117572692794,
+      "paired_code_cosine_distance": 0.23017060756760344
+    },
+    {
+      "positive_code": 200,
+      "negative_code": 9,
+      "positive_count": 2292,
+      "negative_count": 1137,
+      "positive_intra_shift_corr": 0.26683846827847624,
+      "negative_intra_shift_corr": 0.3165955512678228,
+      "positive_polarity_majority": 0.9541884816753927,
+      "negative_polarity_majority": 0.899736147757256,
+      "paired_code_cosine_distance": 0.2938612699515729
+    },
+    {
+      "positive_code": 218,
+      "negative_code": 10,
+      "positive_count": 1428,
+      "negative_count": 1211,
+      "positive_intra_shift_corr": 0.2355444088146373,
+      "negative_intra_shift_corr": 0.2527417620493951,
+      "positive_polarity_majority": 0.9719887955182073,
+      "negative_polarity_majority": 0.9578860445912469,
+      "paired_code_cosine_distance": 0.2588783502586147
+    },
+    {
+      "positive_code": 858,
+      "negative_code": 15,
+      "positive_count": 2736,
+      "negative_count": 2195,
+      "positive_intra_shift_corr": 0.29988332655460376,
+      "negative_intra_shift_corr": 0.4361046993302605,
+      "positive_polarity_majority": 0.9700292397660819,
+      "negative_polarity_majority": 0.9298405466970388,
+      "paired_code_cosine_distance": 0.19811582565387809
+    },
+    {
+      "positive_code": 517,
+      "negative_code": 16,
+      "positive_count": 2091,
+      "negative_count": 1360,
+      "positive_intra_shift_corr": 0.24945889768599178,
+      "negative_intra_shift_corr": 0.2648982003874669,
+      "positive_polarity_majority": 0.96987087517934,
+      "negative_polarity_majority": 0.9036764705882353,
+      "paired_code_cosine_distance": 0.18652462959370908
+    },
+    {
+      "positive_code": 565,
+      "negative_code": 17,
+      "positive_count": 588,
+      "negative_count": 1261,
+      "positive_intra_shift_corr": 0.28373132110617416,
+      "negative_intra_shift_corr": 0.34333158457794877,
+      "positive_polarity_majority": 0.8554421768707483,
+      "negative_polarity_majority": 0.9579698651863601,
+      "paired_code_cosine_distance": 0.28956675529551035
+    },
+    {
+      "positive_code": 65,
+      "negative_code": 22,
+      "positive_count": 1442,
+      "negative_count": 895,
+      "positive_intra_shift_corr": 0.27001720326962964,
+      "negative_intra_shift_corr": 0.33900502867523497,
+      "positive_polarity_majority": 0.9348127600554785,
+      "negative_polarity_majority": 0.9329608938547486,
+      "paired_code_cosine_distance": 0.3031795024878795
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "target_sids": [
+    823,
+    517,
+    565,
+    65,
+    218
+  ],
+  "pairs": [
+    {
+      "positive_code": 823,
+      "negative_code": 3,
+      "baseline_negative_code_count": 0,
+      "positive_samples": 7560,
+      "negative_samples": 13857,
+      "before": {
+        "pos_to_pos_code": 0.9981796741485596,
+        "pos_to_neg_code": 0.31908369064331055,
+        "neg_to_pos_code": 0.9992977380752563,
+        "neg_to_neg_code": 0.3102414906024933
+      },
+      "after": {
+        "pos_to_pos_code": 1.0,
+        "pos_to_neg_code": 0.9954730272293091,
+        "neg_to_pos_code": 0.9954730272293091,
+        "neg_to_neg_code": 0.9999999403953552
+      },
+      "positive_code_cosine_distance_old_to_new": 0.0018203258514404297,
+      "negative_code_cosine_distance_old_to_new": 0.6897585093975067,
+      "paired_new_code_cosine_distance": 0.004526972770690918
+    },
+    {
+      "positive_code": 517,
+      "negative_code": 6,
+      "baseline_negative_code_count": 0,
+      "positive_samples": 6116,
+      "negative_samples": 7153,
+      "before": {
+        "pos_to_pos_code": 0.9988777041435242,
+        "pos_to_neg_code": -0.06414088606834412,
+        "neg_to_pos_code": 0.999198317527771,
+        "neg_to_neg_code": -0.06735169887542725
+      },
+      "after": {
+        "pos_to_pos_code": 0.9999999403953552,
+        "pos_to_neg_code": 0.9963701963424683,
+        "neg_to_pos_code": 0.9963701963424683,
+        "neg_to_neg_code": 1.0
+      },
+      "positive_code_cosine_distance_old_to_new": 0.00112229585647583,
+      "negative_code_cosine_distance_old_to_new": 1.0673516988754272,
+      "paired_new_code_cosine_distance": 0.0036298036575317383
+    },
+    {
+      "positive_code": 565,
+      "negative_code": 8,
+      "baseline_negative_code_count": 0,
+      "positive_samples": 3427,
+      "negative_samples": 7355,
+      "before": {
+        "pos_to_pos_code": 0.9924789667129517,
+        "pos_to_neg_code": 0.03493783250451088,
+        "neg_to_pos_code": 0.9984620809555054,
+        "neg_to_neg_code": 0.05593935400247574
+      },
+      "after": {
+        "pos_to_pos_code": 1.0,
+        "pos_to_neg_code": 0.9849591255187988,
+        "neg_to_pos_code": 0.9849591255187988,
+        "neg_to_neg_code": 0.9999999403953552
+      },
+      "positive_code_cosine_distance_old_to_new": 0.00752103328704834,
+      "negative_code_cosine_distance_old_to_new": 0.9440606459975243,
+      "paired_new_code_cosine_distance": 0.015040874481201172
+    },
+    {
+      "positive_code": 65,
+      "negative_code": 9,
+      "baseline_negative_code_count": 0,
+      "positive_samples": 8284,
+      "negative_samples": 3223,
+      "before": {
+        "pos_to_pos_code": 0.9982573986053467,
+        "pos_to_neg_code": -0.05879337713122368,
+        "neg_to_pos_code": 0.9887707233428955,
+        "neg_to_neg_code": -0.03559933230280876
+      },
+      "after": {
+        "pos_to_pos_code": 1.0,
+        "pos_to_neg_code": 0.9804308414459229,
+        "neg_to_pos_code": 0.9804308414459229,
+        "neg_to_neg_code": 0.9999999403953552
+      },
+      "positive_code_cosine_distance_old_to_new": 0.0017426013946533203,
+      "negative_code_cosine_distance_old_to_new": 1.0355993323028088,
+      "paired_new_code_cosine_distance": 0.01956915855407715
+    },
+    {
+      "positive_code": 218,
+      "negative_code": 10,
+      "baseline_negative_code_count": 0,
+      "positive_samples": 4399,
+      "negative_samples": 7285,
+      "before": {
+        "pos_to_pos_code": 0.9954848289489746,
+        "pos_to_neg_code": 0.148828387260437,
+        "neg_to_pos_code": 0.998633861541748,
+        "neg_to_neg_code": 0.16344685852527618
+      },
+      "after": {
+        "pos_to_pos_code": 1.0,
+        "pos_to_neg_code": 0.9899609088897705,
+        "neg_to_pos_code": 0.9899609088897705,
+        "neg_to_neg_code": 0.9999998807907104
+      },
+      "positive_code_cosine_distance_old_to_new": 0.004515171051025391,
+      "negative_code_cosine_distance_old_to_new": 0.8365531414747238,
+      "paired_new_code_cosine_distance": 0.010039091110229492
+    }
+  ],
+  "loss_weight": 0.05,
+  "margin": 0.1,
+  "warmup_epochs": 5,
+  "dead_code_usage_csv": "outputs/sid_quality/ECG_DSA_patient_healthy_raw_v2_clean_le5pct_H_1024_dim64_val_shift_corr_pm6/sid_usage_summary.csv"
+}

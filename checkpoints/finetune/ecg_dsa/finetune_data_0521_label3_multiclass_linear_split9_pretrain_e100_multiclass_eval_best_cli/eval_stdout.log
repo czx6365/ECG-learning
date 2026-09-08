@@ -1,0 +1,50 @@
+Not using distributed mode
+Namespace(task_type='classification', is_binary=False, batch_size=256, epochs=30, update_freq=1, save_ckpt_freq=10, robust_test=None, model='HeartLang_finetune_base', head_type='mlp', mlp_input_type='end_to_end', task_head_type='linear', task_head_hidden_dim=256, task_head_dropout=0.1, share_aux_task_head=False, pooling_type='cls', regression_loss_type='mse', regression_loss_beta=1.0, aux_regression_metadata_dir='', aux_regression_label_cols=[], aux_regression_loss_weight=1.0, aux_regression_target_scale=100.0, feature_model_type='decision_tree', save_features=False, load_features_if_exist=False, feature_dir='', force_reextract_features=False, layer_scale_init_value=0.1, drop=0.0, disable_eval_during_finetuning=False, dt_max_depth=None, dt_random_state=0, dt_criterion='gini', rf_n_estimators=300, rf_max_depth=None, rf_random_state=0, rf_n_jobs=-1, svm_kernel='rbf', svm_c=1.0, svm_gamma='scale', svm_random_state=0, lr_max_iter=1000, lr_c=1.0, lr_solver='lbfgs', lr_random_state=0, xgb_n_estimators=300, xgb_max_depth=6, xgb_learning_rate=0.05, xgb_subsample=0.8, xgb_colsample_bytree=0.8, xgb_random_state=0, xgb_n_jobs=-1, lgbm_n_estimators=300, lgbm_learning_rate=0.05, lgbm_num_leaves=31, lgbm_max_depth=-1, lgbm_random_state=0, lgbm_n_jobs=-1, model_ema=False, model_ema_decay=0.9999, model_ema_force_cpu=False, opt='adamw', opt_eps=1e-08, opt_betas=None, clip_grad=None, momentum=0.9, weight_decay=0.05, weight_decay_end=0.05, lr=0.005, layer_decay=0.9, warmup_lr=1e-06, min_lr=1e-05, warmup_epochs=10, warmup_steps=-1, smoothing=0.1, reprob=0.25, remode='pixel', recount=1, resplit=False, finetune='checkpoints/pretrain/HeartLang_pretrain_ECG_DSA_v2_split9_vqhbr1024_dim64_e100/checkpoint-100.pth', trainable='linear', trainable_last_n_layers=1, model_key='model|module', model_prefix='', model_filter_name='gzp', init_scale=0.001, use_mean_pooling=True, sampling_method='random', split_ratio=1.0, dataset_dir='datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label3', nb_classes=3, regression_dim=1, output_dir='checkpoints/finetune/ecg_dsa/finetune_data_0521_label3_multiclass_linear_split9_pretrain_e100_multiclass_eval_best_cli', log_dir='log/finetune/finetune_data_0521_label3_multiclass_linear_split9_pretrain_e100_multiclass_eval_best_cli', device='cuda', seed=0, resume='checkpoints/finetune/ecg_dsa/finetune_data_0521_label3_multiclass_linear_split9_pretrain_e100_multiclass/checkpoint-best.pth', auto_resume=False, save_ckpt=True, start_epoch=1, eval=True, dist_eval=False, num_workers=10, pin_mem=True, disable_amp=True, world_size=1, local_rank=-1, dist_on_itp=False, dist_url='env://', enable_deepspeed=False, distributed=False)
+==================== stage train's class distribution ====================
+Class 0: 2189 samples
+Class 1: 3019 samples
+Class 2: 689 samples
+==================== stage val's class distribution ====================
+Class 0: 429 samples
+Class 1: 604 samples
+Class 2: 143 samples
+==================== stage test's class distribution ====================
+Class 0: 423 samples
+Class 1: 666 samples
+Class 2: 141 samples
+All columns are suitable for ROC AUC calculation.
+val dataset has invalid columns:  []
+All columns are suitable for ROC AUC calculation.
+test dataset has invalid columns:  []
+Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7fb41d8af430>
+checkpoint.keys(): dict_keys(['model', 'optimizer', 'epoch', 'args', 'scaler'])
+=========================Load ckpt from checkpoints/pretrain/HeartLang_pretrain_ECG_DSA_v2_split9_vqhbr1024_dim64_e100/checkpoint-100.pth=========================
+Load state_dict by model_key = model
+Weights of ST_ECGFormerClassifier not initialized from pretrained model: ['mlp_head.weight', 'mlp_head.bias']
+Trainable layers: ['mlp_head.weight', 'mlp_head.bias']
+LR = 0.00500000
+Batch size on one GPU = 256, 1 GPUs total batch size = 256
+Update frequent = 1
+Number of training examples = 5897
+Number of training steps per epoch = 23
+Assigned values = [0.2541865828329001, 0.2824295364810001, 0.31381059609000006, 0.3486784401000001, 0.3874204890000001, 0.4304672100000001, 0.4782969000000001, 0.531441, 0.5904900000000001, 0.6561, 0.7290000000000001, 0.81, 0.9, 1.0]
+Skip weight decay name marked in model: {}
+Optimizer config: {'lr': 0.005, 'weight_decay': 0.0, 'eps': 1e-08}
+Use step level LR scheduler!
+Set warmup steps = 230
+Set warmup steps = 0
+Max WD = 0.0500000, Min WD = 0.0500000
+criterion = CrossEntropyLoss()
+Resume checkpoint checkpoints/finetune/ecg_dsa/finetune_data_0521_label3_multiclass_linear_split9_pretrain_e100_multiclass/checkpoint-best.pth
+Resume checkpoint at epoch best
+With optim & sched!
+Test batch size = 384
+Number of test examples = 1230
+Number of testing steps in one epoch = 4
+Test:  [0/4]  eta: 0:00:05  loss: 0.9054 (0.9054)  main_loss: 0.9054 (0.9054)  accuracy: 0.5885 (0.5885)  precision: 0.4704 (0.4704)  recall: 0.4864 (0.4864)  f1: 0.4693 (0.4693)  time: 1.2626  data: 0.3865  max mem: 3677
+Test:  [3/4]  eta: 0:00:00  loss: 0.9054 (0.9197)  main_loss: 0.9054 (0.9197)  accuracy: 0.5469 (0.5455)  precision: 0.4704 (0.4829)  recall: 0.4864 (0.5025)  f1: 0.4693 (0.4806)  time: 0.5746  data: 0.0968  max mem: 3677
+Test: Total time: 0:00:02 (0.5912 s / it)
+* loss 0.920
+====== log/finetune/finetune_data_0521_label3_multiclass_linear_split9_pretrain_e100_multiclass_eval_best_cli ======
+====== AUC: 0.7052617836582614 ======
+Results appended to results/metrics/finetune_results.csv

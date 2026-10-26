@@ -4,20 +4,31 @@ __pycache__/
 .venv/
 .venv-heartlang/
 .env
+.ipynb_checkpoints/
 
 # Large or private experiment assets
 datasets/
-checkpoints/**/*.pth
-checkpoints/**/*.pt
-checkpoints/**/*.ckpt
+checkpoints/
+results/
+outputs/
+log/
+logs/
+snapshots/
 events.out.tfevents*
 token_assignments.csv
+*.pth
+*.pt
+*.ckpt
 *.npy
 *.npz
 *.h5
 *.hdf5
 *.mat
 
+# Local backup copies
+*.bak
+*.bak_*
+
 # OS/editor
 .DS_Store
-.vscode/*.log
+.vscode/

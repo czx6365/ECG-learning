@@ -40,6 +40,7 @@ from sklearn.metrics import (
     f1_score,
     classification_report,
     roc_auc_score,
+    r2_score,
 )
 
 
@@ -919,6 +920,45 @@ def get_trainable_layers(model):
     return trainable_layers
 
 
+def analyze_regression(y_pred, y_true):
+    """Return basic regression metrics for one or multi-output targets."""
+    y_pred = np.asarray(y_pred, dtype=np.float64)
+    y_true = np.asarray(y_true, dtype=np.float64)
+
+    if y_pred.ndim == 1:
+        y_pred = y_pred.reshape(-1, 1)
+    if y_true.ndim == 1:
+        y_true = y_true.reshape(-1, 1)
+
+    if y_pred.shape != y_true.shape:
+        if y_pred.size == y_true.size:
+            y_pred = y_pred.reshape(y_true.shape)
+        else:
+            raise ValueError(
+                f"Regression prediction/target shape mismatch: "
+                f"{y_pred.shape} vs {y_true.shape}"
+            )
+
+    # 避免少量 NaN/Inf 让整轮验证直接失败。
+    valid_mask = np.isfinite(y_pred).all(axis=1) & np.isfinite(y_true).all(axis=1)
+    y_pred = y_pred[valid_mask]
+    y_true = y_true[valid_mask]
+
+    if y_pred.shape[0] == 0:
+        return {"r2": float("nan"), "mae": float("nan"), "mse": float("nan"), "rmse": float("nan")}
+
+    diff = y_pred - y_true
+    mse = float(np.mean(diff ** 2))
+    mae = float(np.mean(np.abs(diff)))
+    rmse = float(math.sqrt(mse))
+    try:
+        r2 = float(r2_score(y_true, y_pred, multioutput="uniform_average"))
+    except ValueError:
+        r2 = float("nan")
+
+    return {"r2": r2, "mae": mae, "mse": mse, "rmse": rmse}
+
+
 def analyze_ecg_classification(y_pred, y_true, is_binary, threshold=0.5):
     if is_binary:
         y_pred = (y_pred > threshold).astype(int)
@@ -1026,7 +1066,7 @@ def gather_tensor(tensors):
     return concatenated_outputs
 
 
-def save_results_as_csv(results, save_path, type, args):
+def save_results_as_csv(results, save_path, type, args, metric_name="ROC AUC"):
     # Ensure the save path exists
     os.makedirs(save_path, exist_ok=True)
 
@@ -1055,7 +1095,7 @@ def save_results_as_csv(results, save_path, type, args):
             "Trainable Layer",
             "Split Ratio",
             "Sampling Method",
-            "ROC AUC",
+            metric_name,
         ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -1071,7 +1111,7 @@ def save_results_as_csv(results, save_path, type, args):
                 "Trainable Layer": trainable_layer,
                 "Split Ratio": split_ratio,
                 "Sampling Method": sampling_method,
-                "ROC AUC": results,
+                metric_name: results,
             }
         )
 

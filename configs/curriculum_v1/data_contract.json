@@ -1,0 +1,28 @@
+{
+  "contract_version": "curriculum_v1_data_contract",
+  "seed": 0,
+  "main_dataset_dir": "datasets/ecg_datasets/ECG_DSA/qrs/data_0521_label4_patient4675_healthy4675_patient_split_v1",
+  "word_pretrain_dataset_dir": "datasets/ecg_datasets/ECG_DSA/pretrain_qrs/patient_healthy_raw_v2_clean_le5pct",
+  "c1_split_index_dir": "datasets/ecg_datasets/ECG_DSA/pretrain_indices/curriculum_v1_c1_strict",
+  "c1_assignment_manifest_sha256": "18f70c5e4aeaab989114b6dbd12d801324eec833edad126def58fa35c3b3d5bf",
+  "allowed_training_splits": ["train"],
+  "validation_splits": ["val"],
+  "final_evaluation_splits": ["test"],
+  "label_order": ["OMI", "NOMI", "对照组", "健康"],
+  "expected_split_sizes": {
+    "train": 6640,
+    "val": 1344,
+    "test": 1366
+  },
+  "identity_keys": {
+    "patient": "patient_sn",
+    "healthy": "csv_name suffix after final underscore"
+  },
+  "split_manifest_sha256": "0eb883c55b4e4bcf580b8a4c9108b4fb5a94f8665a9db4002529c255dc11d49f",
+  "artifact_roots": {
+    "checkpoints": "checkpoints/curriculum_v1",
+    "logs": "log/curriculum_v1",
+    "outputs": "outputs/curriculum_v1",
+    "results": "results/curriculum_v1"
+  }
+}

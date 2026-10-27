@@ -1,0 +1,33 @@
+{
+  "name": "E12-A continuous z_e masked SID",
+  "file": "checkpoint-best.pth",
+  "storage": "git-lfs",
+  "size_bytes": 155463072,
+  "sha256": "7d6d681489dccb0d0a8687d6a4ebcb6cc4b845007762019634845eb4f86a2c61",
+  "selection": {
+    "metric": "validation masked SID cross-entropy",
+    "best_epoch": 100,
+    "best_val_ce": 1.2768266846736271
+  },
+  "fixed_mask_validation": {
+    "masked_sid_ce": 1.2785441207302537,
+    "masked_sid_accuracy": 0.6005020243868453,
+    "masked_tokens": 509537
+  },
+  "pretraining": {
+    "train_records": 87066,
+    "val_records": 8941,
+    "epochs": 100,
+    "batch_size": 256,
+    "seed": 0,
+    "mask_ratio_valid_heartbeats": 0.5,
+    "codebook_size": 1024,
+    "codebook_dim": 64,
+    "continuous_ze_dim": 64
+  },
+  "downstream_validation": {
+    "seeds": [0, 1, 2],
+    "overall_r2_mean": 0.3829476475942691,
+    "overall_r2_sd": 0.0026224432827779446
+  }
+}

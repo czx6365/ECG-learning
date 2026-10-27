@@ -32,3 +32,11 @@ token_assignments.csv
 # OS/editor
 .DS_Store
 .vscode/
+
+# Published E12-A checkpoint and its lightweight provenance files
+!checkpoints/
+!checkpoints/pretrain/
+!checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/
+!checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/checkpoint-best.pth
+!checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/README.md
+!checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/metadata.json

@@ -4,6 +4,12 @@
   "storage": "git-lfs",
   "size_bytes": 155463072,
   "sha256": "7d6d681489dccb0d0a8687d6a4ebcb6cc4b845007762019634845eb4f86a2c61",
+  "required_e3": {
+    "file": "../../vqhbr/E3_morphology_encoder_codebook/checkpoint-best.pth",
+    "size_bytes": 24991756,
+    "sha256": "d39b40f5e73e2317b6b9fb564f79071cf17d61aebbe76177cd9bdac95a356d25",
+    "frozen": true
+  },
   "selection": {
     "metric": "validation masked SID cross-entropy",
     "best_epoch": 100,

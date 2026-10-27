@@ -32,6 +32,13 @@ conda activate heartlang
 pip install -r requirements.txt
 ```
 
+### Published E12-A checkpoint
+
+The validation-selected E12-A continuous-`z_e` checkpoint, its matching frozen
+E3 morphology encoder/codebook, and a data-independent loading example are
+included through Git LFS. See
+[`checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/README.md`](checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/README.md).
+
 ### Prepare Pre-training Data
 
 You can download the electrocardiogram data required for pretraining from [MIMIC-IV Dataset](https://physionet.org/content/mimic-iv-ecg/1.0/).

@@ -40,3 +40,7 @@ token_assignments.csv
 !checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/checkpoint-best.pth
 !checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/README.md
 !checkpoints/pretrain/E12-A_continuous_ze_sid_mlm/metadata.json
+!checkpoints/vqhbr/
+!checkpoints/vqhbr/E3_morphology_encoder_codebook/
+!checkpoints/vqhbr/E3_morphology_encoder_codebook/checkpoint-best.pth
+!checkpoints/vqhbr/E3_morphology_encoder_codebook/README.md

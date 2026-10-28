@@ -637,6 +637,36 @@ def report(run_dir: Path) -> None:
     audit = json.loads((run_dir / "text_alignment/alignment_audit.json").read_text())
     e18 = summary["e18"]["aggregate"]
     base = summary["e12a_historical"]["aggregate"]
+    metric_rows = []
+    for label, key in (("E12-A", "e12a_historical"), ("E18", "e18")):
+        group = summary[key]
+        for item in group["per_seed"]:
+            val = item["val"]
+            metric_rows.append({
+                "method": label, "statistic": "seed",
+                "seed": int(item.get("seed", item.get("downstream_seed"))),
+                "overall_r2": val["r2"],
+                **{f"{name.lower().replace(' ', '_')}_r2": val["per_output_r2"][name]
+                   for name in e12.LABEL_NAMES},
+                "macro_auc": val["macro_roc_auc"], "macro_f1": val["macro_f1"],
+                "mse": val["mse"], "mlm_val_ce": np.nan, "masked_sid_accuracy": np.nan,
+            })
+        for statistic in ("mean", "sd"):
+            agg = group["aggregate"]
+            metric_rows.append({
+                "method": label, "statistic": statistic, "seed": np.nan,
+                "overall_r2": agg["r2"][statistic],
+                **{f"{name.lower().replace(' ', '_')}_r2": agg["per_output_r2"][name][statistic]
+                   for name in e12.LABEL_NAMES},
+                "macro_auc": agg["macro_roc_auc"][statistic],
+                "macro_f1": agg["macro_f1"][statistic], "mse": agg["mse"][statistic],
+                "mlm_val_ce": ((fixed["e12a"]["loss"] if label == "E12-A" else fixed["e18_ecg_text"]["mlm_ce"])
+                               if statistic == "mean" else np.nan),
+                "masked_sid_accuracy": ((fixed["e12a"]["masked_sid_accuracy"] if label == "E12-A"
+                                          else fixed["e18_ecg_text"]["mlm_accuracy"])
+                                         if statistic == "mean" else np.nan),
+            })
+    pd.DataFrame(metric_rows).to_csv(run_dir / "metrics_summary.csv", index=False)
     lines = ["# E18：中文 ECG 报告对齐", "", "## 结论", "",
              "本实验在E12-A的Masked SID预训练中加入冻结中文MedBERT报告分支；下游只输入ECG。",
              "所有比较仅使用Validation，未运行Test。", "", "## 文本与泄漏审计", "",

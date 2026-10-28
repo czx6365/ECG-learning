@@ -80,7 +80,7 @@ def normalize_text(value: str) -> str:
 def label_pairs() -> tuple[pd.DataFrame, dict]:
     table = pd.read_excel(LABEL_XLSX)
     rows = []
-    rules = {"position": 0, "single_shared": 0, "last_shared": 0, "none": 0}
+    rules = {"row_composite": 0, "none": 0}
     for row_index, row in table.iterrows():
         files = [x.strip() for x in str(row["file_name"]).split(";")
                  if x.strip() and x.strip().lower() != "nan"]
@@ -89,37 +89,48 @@ def label_pairs() -> tuple[pd.DataFrame, dict]:
             raw = row.get(f"诊断结论_{pos}")
             if pd.notna(raw) and normalize_text(raw):
                 diagnoses.append((pos, normalize_text(raw)))
+        diagnosis_positions = ",".join(str(pos) for pos, _ in diagnoses)
+        report_text = normalize_text("；".join(text for _, text in diagnoses))
+        rule = "row_composite" if report_text else "none"
         for pos, filename in enumerate(files, 1):
-            exact = next(((p, text) for p, text in diagnoses if p == pos), None)
-            if exact is not None:
-                source_pos, text, rule = exact[0], exact[1], "position"
-            elif len(diagnoses) == 1:
-                source_pos, text, rule = diagnoses[0][0], diagnoses[0][1], "single_shared"
-            elif diagnoses:
-                source_pos, text, rule = diagnoses[-1][0], diagnoses[-1][1], "last_shared"
-            else:
-                source_pos, text, rule = -1, "", "none"
             rules[rule] += 1
             rows.append({
                 "excel_row": int(row_index),
                 "patient_sn": str(row["patient_sn"]),
                 "ecg_position": int(pos),
-                "diagnosis_position": int(source_pos),
+                "row_ecg_count": int(len(files)),
+                "row_diagnosis_count": int(len(diagnoses)),
+                "diagnosis_positions": diagnosis_positions,
                 "csv_stem": Path(filename).stem,
-                "report_text": text,
+                "report_text": report_text,
                 "mapping_rule": rule,
             })
     pairs = pd.DataFrame(rows)
-    ambiguous = []
-    for stem, group in pairs.groupby("csv_stem"):
-        texts = sorted(set(group.report_text))
-        if len(texts) > 1:
-            ambiguous.append({"csv_stem": stem, "texts": texts})
-    if ambiguous:
-        raise RuntimeError(f"Ambiguous duplicate ECG/report mappings: {ambiguous[:5]}")
-    pairs = pairs.sort_values(["csv_stem", "excel_row", "ecg_position"]).drop_duplicates("csv_stem")
-    return pairs, {"excel_rows": len(table), "ecg_files": len(rows), "mapping_rules": rules,
-                   "duplicate_stems_consistent": int(len(rows) - len(pairs)), "ambiguous_stems": 0}
+    duplicate_groups = [group for _, group in pairs.groupby("csv_stem") if len(group) > 1]
+    cross_patient = [group.csv_stem.iloc[0] for group in duplicate_groups
+                     if group.patient_sn.nunique() > 1]
+    if cross_patient:
+        raise RuntimeError(f"Duplicate ECG files assigned to different patients: {cross_patient[:5]}")
+    tied_maximal = []
+    for group in duplicate_groups:
+        maximal = group.loc[group.row_ecg_count == group.row_ecg_count.max()]
+        if maximal.report_text.nunique() > 1:
+            tied_maximal.append(group.csv_stem.iloc[0])
+    if tied_maximal:
+        raise RuntimeError(f"Duplicate ECG files have conflicting equally maximal rows: {tied_maximal[:5]}")
+    # Some source ECG filenames are repeated in a shorter and a more complete row for the
+    # same patient. Keep the row containing the largest ECG/diagnosis set so one physical
+    # ECG receives exactly one reproducible row-level report.
+    pairs = pairs.sort_values(
+        ["csv_stem", "row_ecg_count", "row_diagnosis_count", "excel_row", "ecg_position"],
+        ascending=[True, False, False, False, True],
+    ).drop_duplicates("csv_stem")
+    return pairs, {
+        "excel_rows": len(table), "ecg_references": len(rows), "unique_ecg_files": len(pairs),
+        "mapping_rules": rules, "duplicate_ecg_references": int(len(rows) - len(pairs)),
+        "duplicate_ecg_stems": int(len(duplicate_groups)), "cross_patient_duplicate_stems": 0,
+        "duplicate_resolution": "same-patient duplicate ECG keeps the Excel row with the largest ECG set, then largest diagnosis set",
+    }
 
 
 def build_alignment(run_dir: Path) -> None:
@@ -158,8 +169,10 @@ def build_alignment(run_dir: Path) -> None:
             report_index[int(row.pretrain_index)] = rid
             manifest_rows.append({
                 "pretrain_index": int(row.pretrain_index), "csv_name": row.csv_name,
-                "patient_sn": row.patient_sn, "report_id": rid,
-                "ecg_position": int(row.ecg_position), "diagnosis_position": int(row.diagnosis_position),
+                "patient_sn": row.patient_sn, "excel_row": int(row.excel_row), "report_id": rid,
+                "ecg_position": int(row.ecg_position), "row_ecg_count": int(row.row_ecg_count),
+                "row_diagnosis_count": int(row.row_diagnosis_count),
+                "diagnosis_positions": str(row.diagnosis_positions),
                 "mapping_rule": row.mapping_rule, "report_text": text,
             })
         manifest = pd.DataFrame(manifest_rows).sort_values("pretrain_index")
@@ -184,8 +197,10 @@ def build_alignment(run_dir: Path) -> None:
                                 "text": text}, ensure_ascii=False) + "\n")
     audit = {
         "source": str(LABEL_XLSX), "allowed_fields": ["file_name", "patient_sn", "诊断结论_1..6"],
-        "forbidden_fields_used": [], "mapping_policy": "position first; missing diagnosis reuses the row's sole or last available ECG diagnosis",
-        "multi_ecg_same_text_policy": "same normalized text receives the same multi-positive report_id",
+        "forbidden_fields_used": [],
+        "mapping_policy": "concatenate every non-empty diagnosis_1..6 in Excel-row order; every ECG listed in that row shares the complete row-level report",
+        "multi_ecg_same_text_policy": "all ECGs in one Excel row share its composite report_id; identical normalized composite reports across rows also share a report_id",
+        "duplicate_ecg_policy": "when the same ECG file is repeated in multiple rows for the same patient, use the row with the largest ECG set, then the largest diagnosis set",
         "patient_leakage_policy": "text alignment restricted to downstream-train patient_sn; downstream Val/Test reports excluded",
         "source_audit": source_audit, "unique_normalized_reports": len(texts), "splits": split_audit,
     }
@@ -629,7 +644,7 @@ def report(run_dir: Path) -> None:
              f"- 无监督Val对齐ECG：{audit['splits']['val']['paired_ecgs']}。",
              "- 只读取file_name、patient_sn和诊断结论_1..6；未读取造影、PCI、肌钙蛋白、出院诊断或下游标签。",
              "- 文本监督按patient_sn限制为下游Train患者；下游Val/Test患者报告重叠均为0。",
-             "- 多个ECG共用同一诊断时，共享同一multi-positive report_id。", "",
+             "- 同一Excel行的诊断结论_1..6全部非空内容按顺序拼接；该行所有ECG共享这一完整文本和multi-positive report_id。", "",
              "## 固定Mask MLM", "", "| 方法 | Val CE | Masked SID Accuracy |", "|---|---:|---:|",
              f"| E12-A | {fixed['e12a']['loss']:.6f} | {fixed['e12a']['masked_sid_accuracy']:.6f} |",
              f"| E18 ECG+中文报告 | {fixed['e18_ecg_text']['mlm_ce']:.6f} | {fixed['e18_ecg_text']['mlm_accuracy']:.6f} |", "",

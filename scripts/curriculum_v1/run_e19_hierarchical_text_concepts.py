@@ -207,7 +207,7 @@ class E19Model(nn.Module):
 
     def pool_regions(self, regions, region_mask):
         score = self.region_attention(regions + self.region_embedding.unsqueeze(0)).squeeze(-1)
-        score = score.masked_fill(~region_mask, -1e9)
+        score = score.masked_fill(~region_mask, torch.finfo(score.dtype).min)
         weight = torch.softmax(score, 1) * region_mask.float()
         weight = weight / weight.sum(1, keepdim=True).clamp_min(1e-12)
         return (weight.unsqueeze(-1) * regions).sum(1)

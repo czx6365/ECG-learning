@@ -146,3 +146,4 @@ def load_e12a(
     model.to(device)
     model.train(train)
     return model
+

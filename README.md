@@ -106,8 +106,6 @@ For the current ECG_DSA Morphology-V2 / HeartLangSID experiments, see the [compl
 
 > Authors: Jiarui Jin, Haoyu Wang, Hongyan Li, Jun Li, Jiahui Pan, Shenda Hong.
 
-![HeartLang](figs/framework.png)
-
 ## 🚀 Getting Started
 
 🚩 **News** (Jan 2025): The pre-training checkpoint is now available on [🤗 Hugging Face](https://huggingface.co/PKUDigitalHealth/HeartLang/tree/main)!
